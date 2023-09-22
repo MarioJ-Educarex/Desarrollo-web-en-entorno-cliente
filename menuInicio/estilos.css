@@ -1,0 +1,263 @@
+* {
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* body {
+    background: #FEFEFE;
+} */
+
+body {
+    height: 10px;
+    /*    background-image: url("https://t3.ftcdn.net/jpg/01/41/53/16/360_F_141531606_9uodguKZuH6bDVcjTBSw1Q6NG13x1EX0.jpg");
+    background-size: cover;
+    background-size: 25rem;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed; */
+
+    margin-left: 5%;
+    margin-right: 5%;
+    /* Márgenes de 20px en todos los lados */
+    padding: 0;
+    /* Sin espacio de relleno en el body */
+    background-color: #d9d9d9;
+    /* Fondo blanco */
+}
+
+.Bienvenida {
+    text-align: center;
+}
+
+.inicial {
+    text-align: center;
+
+}
+
+section {
+    padding: 5%;
+    margin-left: 7.5%;
+    margin-right: 0.2%;
+    text-align: justify;
+    font-size: large;
+    background-color: #ffffff;
+}
+
+.web {
+    padding: 40px;
+    width: 100%;
+    height: auto;
+    padding-right: 25%;
+}
+
+#git {
+    color: white;
+}
+
+/* Estilo para el footer */
+footer {
+    background-color: #023859;
+    /* Fondo gris claro */
+    padding: 10px;
+    /* Espaciado interno de 10px en todos los lados */
+    text-align: center;
+    /* Alineación centrada del contenido */
+    font-size: 14px;
+    /* Tamaño de fuente de 14px */
+    color: #ffffff;
+    /* Color de texto gris oscuro */
+    margin-top: 5%;
+    margin-left: 7%;
+    width: 93%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+img {
+    width: 100px;
+    height: auto;
+    margin-left: 10%;
+}
+
+footer nav {
+    width: 100%;
+    display: flex;
+    margin-right: 5%;
+    justify-content: center;
+
+}
+
+
+.menu_bar {
+    display: none;
+}
+
+header {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+header nav {
+    background: #023859;
+    z-index: 1000;
+    max-width: 2000px;
+    width: 95%;
+}
+
+header nav ul {
+    list-style: none;
+}
+
+header nav ul li {
+    display: inline-block;
+    position: relative;
+}
+
+header nav ul li:hover {
+    background: #E6344A;
+}
+
+header nav ul li a {
+    color: #fff;
+    display: block;
+    text-decoration: none;
+    padding: 20px;
+}
+
+header nav ul li a span {
+    margin-right: 10px;
+}
+
+header nav ul li:hover .children {
+    display: block;
+}
+
+header nav ul li .children {
+    display: none;
+    background: #011826;
+    position: absolute;
+    width: 150%;
+    z-index: 1000;
+}
+
+header nav ul li .children li {
+    display: block;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, .5);
+}
+
+header nav ul li .children li a {
+    display: block;
+}
+
+header nav ul li .children li a span {
+    float: right;
+    position: relative;
+    top: 3px;
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+header nav ul li .caret {
+    position: relative;
+    top: 3px;
+    margin-left: 10px;
+    margin-right: 0px;
+}
+
+@media screen and (max-width: 800px) {
+    body {
+        padding-top: 80px;
+    }
+
+    .menu_bar {
+        display: block;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        background: #E6344A;
+    }
+
+    .menu_bar .bt-menu {
+        display: block;
+        padding: 20px;
+        color: #fff;
+        overflow: hidden;
+        font-size: 25px;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .menu_bar span {
+        float: right;
+        font-size: 40px;
+    }
+
+    header nav {
+        width: 80%;
+        height: calc(100% - 80px);
+        position: fixed;
+        right: 100%;
+        margin: 0;
+        overflow: scroll;
+    }
+
+    header nav ul li {
+        display: block;
+        border-bottom: 1px solid rgba(255, 255, 255, .5);
+    }
+
+    header nav ul li a {
+        display: block;
+    }
+
+    header nav ul li:hover .children {
+        display: none;
+    }
+
+    header nav ul li .children {
+        width: 100%;
+        position: relative;
+    }
+
+    header nav ul li .children li a {
+        margin-left: 20px;
+    }
+
+    header nav ul li .caret {
+        float: right;
+    }
+}
+
+/* UNIDADES */
+
+.cardContainer {
+
+    margin: 50PX 50PX 50PX 100PX;
+    display: grid;
+
+    /* you can change the 4 below to 3 if you only want 3 cards per row */
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 60px;
+}
+
+.card {
+    width: 150px;
+    height: 100px;
+    color: white;
+    background-color: #023859;
+    text-align: center;
+    border-radius: 100%;
+}
+
+.card h4 {
+    padding-top: 25%;
+}
