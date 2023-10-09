@@ -3,10 +3,16 @@ window.onload = inicio;
 const NUM_IMAGES = 20;
 
 function inicio() {
+    var imagenReferencia; //Para comparar
+
     let contenedorP = document.createElement("div");
     contenedorP.className = "container";
     let cuerpo = document.querySelector("body");
     cuerpo.appendChild(contenedorP);
+
+    let contenedorR = document.createElement("div");
+    contenedorR.className = "gallery";
+    contenedorP.appendChild(contenedorR);
 
     let contenedorS = document.createElement("fieldset");
     contenedorS.className = "gallery";
@@ -20,24 +26,30 @@ function inicio() {
     cuerpo.appendChild(contenedorP);
 
     refrescar();
-    var contadorBordes = 0;
+
+
+    let contadorBordes = 0;
     var segundos = 30;
-    var temporizador = setInterval(refrescar, 50000);
+    var temporizador = setInterval(refrescar, 5000);
 
     function refrescar() {
-        //contenedorS.innerHTML = "";
+        contenedorS.innerHTML = "";
+        contenedorR.innerHTML = "";
+
+        contenedorS.appendChild(leyenda);
 
         // while (contenedorS.firstChild) {
         //     contenedorS.removeChild(contenedorS.firstChild);
         // }
 
 
-        let arrayimg = document.querySelectorAll("img");
-        console.log("arrayimg");
-        arrayimg.forEach(function (item, indice) {
-            contenedorS.removeChild(item);
-        });
+        /* let arrayimg = document.querySelectorAll("img");
+         console.log("arrayimg");
+         arrayimg.forEach(function (item, indice) {
+             contenedorS.removeChild(item);
+         });*/
 
+        cargarImagenReferencia();
 
         for (let i = 0; i < NUM_IMAGES; i++) {
             let numRandom = Math.floor(Math.random() * 20);
@@ -62,10 +74,25 @@ function inicio() {
             //         item.disabled = true;
             //     });
             // }
-            images.onmouseover = expandir;
-            images.onmouseleave = encoger;
-            images.onclick = borde;
 
+            /*   images.onmouseover = expandir;
+               images.onmouseleave = encoger;
+               images.onclick = borde;*/
+
+            images.onclick = comparar;
+
+            function comparar() {
+                console.log(images.getAttribute("src"));
+                console.log("Imagen de referencia" + imagenReferencia);
+
+                let imagenClick = images.getAttribute("src");
+
+                if (imagenClick.includes(imagenReferencia)) {
+                    alert("Aciertas");
+                } else {
+                    alert("Fallas");
+                }
+            }
 
             function expandir() {
                 images.style.transform = "scale(2)";
@@ -86,11 +113,29 @@ function inicio() {
                         return;
                     }
                     images.className = "ponerBorde";
-                    contadorBordes--;
+                    contadorBordes++;
                 }
             }
 
         }
+
+    }
+
+    function cargarImagenReferencia() {
+        let imgR = document.createElement("img");
+        imgR.className = "gallery img";
+        let numRandom = Math.floor(Math.random() * 20);
+        let nHM = Math.round(Math.random() * 1);
+
+        if (nHM == 1) {
+            let rutaM = "https://randomuser.me/api/portraits/men/" + numRandom + ".jpg";
+            imgR.src = rutaM;
+        } else {
+            let rutaW = "https://randomuser.me/api/portraits/women/" + numRandom + ".jpg";
+            imgR.src = rutaW;
+        }
+        imagenReferencia = imgR.src; //Para comparar
+        contenedorR.appendChild(imgR);
 
     }
 
