@@ -110,7 +110,7 @@ function validacion3(num, sm) {
     } else if (!Number.isInteger(Number(num))) {
         sm.innerHTML = "* Introduce un número entero.";
         bool = false;
-    } else if (num < -11 || num > 11) {
+    } else if (num < -10 || num > 10) {
         sm.innerHTML = "* Número comprendido entre -10 y +10.";
         bool = false;
     } else {
@@ -120,19 +120,39 @@ function validacion3(num, sm) {
 
 function validacion4(text, sm) {
     console.log("Texto 2: " + text);
+    let cadena = String(text.toLowerCase());
+    let LongitudCad = cadena.length;
     if (text == "") {
         sm.innerHTML = "* Campo obligatorio.";
         bool = false;
-    } else if (!isNaN(text)) {
+    } else if (!isNaN(cadena)) {
         sm.innerHTML = "* Introduce un texto.";
         bool = false;
-    } else if (Number.isInteger(Number(text))) {
-        sm.innerHTML = "* Introduce un texto.";
+    } else if (cadena.indexOf('o') == -1 && cadena.indexOf('a') == -1 && cadena.indexOf('e') == -1) {
+        sm.innerHTML = "* Tiene que aparecer obligatoriamente las letras a , e , o en cualquier posición";
         bool = false;
-    } else if (indexOf('a', 0) == -1 && indexOf('e', 0) == -1 && indexOf('o', 0) == -1) {
-        sm.innerHTML = "* Tiene que aparecer obligatoriamente las letras a , e , o en cualquier posición.";
+    } else if (cadena.indexOf('o') == -1 && cadena.indexOf('a') == -1) {
+        sm.innerHTML = "* Tiene que aparecer la a y la o";
+        bool = false;
+    } else if (cadena.indexOf('o') == -1 && cadena.indexOf('e') == -1) {
+        sm.innerHTML = "* Tiene que aparecer la e y la o";
+        bool = false;
+    } else if (cadena.indexOf('a') == -1 && cadena.indexOf('e') == -1) {
+        sm.innerHTML = "* Tiene que aparecer la a y la e";
+        bool = false;
+    } else if (cadena.indexOf('a') == -1) {
+        sm.innerHTML = "* Tiene que aparecer la a";
+        bool = false;
+    } else if (cadena.indexOf('e') == -1) {
+        sm.innerHTML = "* Tiene que aparecer la e";
+        bool = false;
+    } else if (cadena.indexOf('o') == -1) {
+        sm.innerHTML = "* Tiene que aparecer la o";
         bool = false;
     } else {
+        console.log("a: " + cadena.indexOf('a'));
+        console.log("e: " + cadena.indexOf('e'));
+        console.log("o: " + cadena.indexOf('o'));
         sm.innerHTML = "";
     }
 }
