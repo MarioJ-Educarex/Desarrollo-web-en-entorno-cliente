@@ -1,9 +1,10 @@
-let accion = document.getElementById("formLogin");
+let accion = document.getElementById("aceptar");
 
 let bool = true;
 
 accion.onsubmit = function () {
     console.log("Entro en accion");
+    alert("Entro en accion");
 
     bool = true;
 
@@ -16,10 +17,14 @@ accion.onsubmit = function () {
     let repContrasena = document.getElementById("pwd2").value;
     let smRepContrasena = document.getElementById("smPassword2");
 
+    let mail = document.getElementById("email").value;
+    let smMail = document.getElementById("smEmail");
+
 
     validacionUser(user, smUser);
     validacionPswd(contrasena, smContrasena);
     validacionPswd2(repContrasena, contrasena, smRepContrasena);
+    validacionMail(mail, smMail);
 
 
     return bool;
@@ -41,6 +46,22 @@ function validacionUser(text, sm) {
     //     sm.innerHTML = "* Debe contener al menos una letra mayúscula y un número.";
     //     bool = false;
     // } 
+    else {
+        sm.innerHTML = "";
+    }
+}
+
+//Función para validar el campo mail
+function validacionMail(text, sm) {
+    console.log("E-mail: " + text + " Longitud: " + text.length);
+
+    if (text == "") {
+        sm.innerHTML = "* Campo obligatorio.";
+        bool = false;
+    } else if ((text.match(/@/g) || []).length !== 1) {
+        sm.innerHTML = "* Debe contener una sola arroba ('@').";
+        bool = false;
+    }
     else {
         sm.innerHTML = "";
     }

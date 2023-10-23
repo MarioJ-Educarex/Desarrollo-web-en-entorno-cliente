@@ -10,8 +10,10 @@ function inicio() {
 
 function obtenerDatos() {
     let ciclo = document.querySelector('input[name="radio"]').value;
+    let smCiclo = document.getElementById("smCiclo");
     //let modulos = document.getElementsByName("modulos").value;
     let modulos = document.querySelectorAll('input[name="modulos"]:checked');
+    let smMod = document.getElementById("smModulo");
     let marcados = [];
     modulos.forEach(recorrer);
 
@@ -21,7 +23,9 @@ function obtenerDatos() {
     }
 
     let curso = document.getElementById('selectCurso').value;
+    let smCurso = document.getElementById("smCurso");
     let nombre = document.getElementById('nombre').value;
+    let smNombre = document.getElementById("smNombre");
 
     console.log("Ciclo: " + ciclo);
     console.log("Modulos: " + marcados);
