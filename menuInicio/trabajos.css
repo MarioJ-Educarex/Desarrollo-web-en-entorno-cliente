@@ -1,0 +1,26 @@
+.work ul li a:hover {
+    color: white;
+    background-color: black;
+    border-radius: 5%;
+    text-decoration: underline;
+}
+
+.work ul h3 {
+    padding: 10px;
+}
+
+.work ul li a:link, a:visited {
+    background-color: #221a53b4;
+    border-radius: 5%;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    padding: 5px;
+}
+
+.work ul li {
+
+    list-style-type: none;
+}
