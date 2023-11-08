@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Ajax Insertar Ciudades</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+
+      <div class="col-lg-6">
+        <h1>Insertar Datos Ciudades</h1>
+        <!-- <div style="margin: 0 auto;width:90vw"></div> -->
+
+        <form action="#" id="formulario1" name="form1" method="POST">
+          <div class="form-group">
+            <label for="_id">CIUDAD ID</label>
+            <input type="text" class="form-control" id="_id" name="txtid" placeholder="Teclea el Id ciudad">
+          </div>
+
+          <div class="form-group">
+            <label for="_nombre">CIUDAD NOMBRE</label>
+            <input type="text" class="form-control" id="_nombre" name="txtnombre" placeholder="Teclea el nombre ciudad">
+          </div>
+          <div class="form-group">
+            <label for="_poblacion">CIUDAD Habitantes </label>
+            <input type="number" class="form-control" id="_poblacion" name="txtpoblacion"
+              placeholder="Teclea habitantes de la ciudad">
+          </div>
+          <div class="form-group">
+            <label for="_densidad">ciudad Densidad </label>
+            <input type="number" class="form-control" id="_densidad" name="txtdensidad"
+              placeholder="Teclea la densidad de la ciudad">
+          </div>
+          <div class="form-group">
+            <label for="_superficie">ciudad Superficie</label>
+            <input type="number" class="form-control" id="_superficie" name="txtsuperfice"
+              placeholder="Teclea la superficie de la ciudad">
+          </div>
+
+          <input type="button" name="insertar" class="btn btn-info" id="btnInsertar" value="Insertar Ciudad">
+          <input type="button" name="mostrar" class="btn btn-outline-dark" id="btnMostrar" value="Mostrar">
+          <input type="button" name="eliminar" class="btn btn-dark" id="btnEliminar" value="Eliminar Ciudad">
+          <input type="button" name="modificar" class="btn btn-outline-danger" id="btnModificar"
+            value="Modificar Ciudad">
+        </form>
+
+      </div>
+    </div>
+    <div id="mostrarCiudades"></div>
+  </div>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+</body>
+<script src="script1.js"></script>
+
+</html>
