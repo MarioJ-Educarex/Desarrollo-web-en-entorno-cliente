@@ -1,8 +1,18 @@
 window.onload = inicio;
+
+var boolP = true;
+var boolD = true;
 function inicio() {
     obtenerPaises();
     obtenerDeportes();
-    // obtenerEquipos();
+
+    while (boolD && boolP) {
+
+    }
+
+    obtenerEquipos();
+
+
 }
 async function obtenerPaises() {
     console.log("entro en obtenerPaises");
@@ -20,16 +30,20 @@ async function obtenerPaises() {
         const data = await objeto.json();
         console.log(data);
         let contenedor = document.getElementById("pais");
-        for (let i = 0; i < data.countries.length; i++)
+        for (let i = 0; i < data.countries.length; i++) {
             contenedor.innerHTML +=
                 `
-    <div>
-    <option value=${data.countries[i].name_en}>${data.countries[i].name_en}</option>
-    
-     </div>
-    `
+<div>
+<option value=${data.countries[i].name_en}>${data.countries[i].name_en}</option>
+
+ </div>
+`
+        }
+
+        boolP = false;
+
     } catch (error) {
-        alert(error);
+        alert("obtenerPaises " + error);
     }
 }
 async function obtenerDeportes() {
@@ -48,7 +62,7 @@ async function obtenerDeportes() {
         const data = await response.json();
         console.log(data);
         let contenedor = document.getElementById("deporte");
-        for (let i = 0; i < data.sports.length; i++)
+        for (let i = 0; i < data.sports.length; i++) {
             contenedor.innerHTML +=
                 `
     <div>
@@ -56,9 +70,14 @@ async function obtenerDeportes() {
     
      </div>
     `
+        }
+
+
+        boolD = false;
     } catch (error) {
-        alert(error);
+        alert("obtenerDeportes " + error);
     }
+
 }
 
 async function obtenerEquipos() {
@@ -100,6 +119,6 @@ async function obtenerEquipos() {
      </div>
     `
     } catch (error) {
-        alert(error);
+        alert("No existe " + selectDeporte.value + " en " + selectPais.value + "   " + error);
     }
 }
