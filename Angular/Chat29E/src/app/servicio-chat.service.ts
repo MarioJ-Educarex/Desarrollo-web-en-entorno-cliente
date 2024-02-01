@@ -23,8 +23,8 @@ export class ServicioChatService {
     return this.http.get<Chat[]>(`${this.url}ObtenerMensajes.php`);
   }
 
-  seleccionarUsuario(email: string, pwd: string): Observable<Usuario> {
-    return this.http.get<Usuario>(
+  seleccionarUsuario(email: string, pwd: string): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(
       `${this.url}SeleccionarUsuario.php?email=${email}&pwd=${pwd}`
     );
   }

@@ -20,6 +20,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
@@ -45,6 +50,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatCardModule,
     ReactiveFormsModule,
+    MatPaginatorModule,
+    MatSelectModule,
+    MatTableModule,
+    MatInputModule
+
   ],
   providers: [],
   bootstrap: [AppComponent],
