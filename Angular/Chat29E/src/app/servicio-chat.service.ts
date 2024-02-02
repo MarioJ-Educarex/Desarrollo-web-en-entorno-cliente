@@ -6,9 +6,21 @@ import { Chat } from './chat';
 import { Usuario } from './usuario';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ServicioChatService {
+  // altaMensaje(mensaje: any): Observable<any> {
+  //   return this.http.post(`${this.url}AltaMensaje.php`, mensaje);
+  // }
+  // obtenerMensajes(): Observable<any> {
+  //   return this.http.get(`${this.url}ObtenerMensajes.php`);
+  // }
+  // altaUsuario(usuario: any): Observable<any> {
+  //   return this.http.post(`${this.url}AltaUsuario.php`, usuario);
+  // }
+  // seleccionarUsuario(email: string, pwd: string): Observable<any> {
+  //   return this.http.get(`${this.url}SeleccionarUsuario.php?email=${email}&pwd=${pwd}`);
+  // }
 
   private url = 'http://moralo.atwebpages.com/menuAjax/chat/';
 
@@ -31,6 +43,38 @@ export class ServicioChatService {
 
   altaUsuario(usuario: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(`${this.url}AltaUsuario.php`, usuario);
+  }
+
+  activarMensaje(idMensaje: number): Observable<Chat> {
+    return this.http.get<Chat>(
+      `${this.url}ActivarMensaje.php?idMensaje=${idMensaje}`
+    );
+  }
+
+  bloquearMensaje(idMensaje: number): Observable<Chat> {
+    return this.http.get<Chat>(
+      `${this.url}BloquearMensaje.php?idMensaje=${idMensaje}`
+    );
+  }
+
+  obtenerMensajes(): Observable<Chat[]> {
+    return this.http.get<Chat[]>(`${this.url}ObtenerMensajes.php`);
+  }
+
+  obtenerMensajesActivos(): Observable<Chat[]> {
+    return this.http.get<Chat[]>(`${this.url}ObtenerMensajes2.php`);
+  }
+
+  activarUsuario(usuario: Usuario): Observable<Usuario> {
+    return this.http.post<Usuario>(`${this.url}ActivarUsuario.php`, usuario);
+  }
+
+  bloquearUsuario(usuario: Usuario): Observable<Usuario> {
+    return this.http.post<Usuario>(`${this.url}BloquearUsuario.php`, usuario);
+  }
+
+  obtenerUsuarios(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(`${this.url}ObtenerUsuarios.php`);
   }
 
   constructor(

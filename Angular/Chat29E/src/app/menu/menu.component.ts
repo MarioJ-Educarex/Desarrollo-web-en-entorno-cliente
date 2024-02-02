@@ -9,7 +9,7 @@ import { Chat } from '../chat';
 import { ServicioChatService } from '../servicio-chat.service';
 import { Router } from '@angular/router';
 import { MatButton } from '@angular/material/button';
-
+import { Usuario } from '../usuario';
 
 @Component({
   selector: 'app-menu',
@@ -17,8 +17,6 @@ import { MatButton } from '@angular/material/button';
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent {
-  activarMsg(arg0: any) {}
-  bloquearMsg(arg0: any) {}
   miParametro: string = sessionStorage.getItem('Nombre') || '';
   msjchat = { mensaje: '' };
 
@@ -27,8 +25,26 @@ export class MenuComponent {
     this.router.navigate(['/login']);
   }
 
-  columnas: string[] = ['id', 'fecha', 'usuario', 'mensaje', 'activo', 'bloquear', 'activar'];
+  columnas: string[] = [
+    'id',
+    'fecha',
+    'usuario',
+    'mensaje',
+    'activo',
+    'bloquear',
+    'activar',
+  ];
+  columnasUs: string[] = [
+    'idUsuario',
+    'nombre',
+    'email',
+    'pwd',
+    'activo',
+    'bloquear',
+    'activar',
+  ];
   dataSource = new MatTableDataSource<Chat>();
+  dataSource2 = new MatTableDataSource<Usuario>();
 
   @ViewChild(MatPaginator, { static: true })
   paginator!: MatPaginator;
@@ -40,6 +56,7 @@ export class MenuComponent {
     private router: Router
   ) {
     this.gestionMensajes();
+    this.gestionUsuarios();
   }
 
   gestionMensajes() {
@@ -51,6 +68,18 @@ export class MenuComponent {
       this.dataSource.paginator = this.paginator;
       //filtro para ordenación
       this.dataSource.sort = this.sort;
+    });
+  }
+
+  gestionUsuarios() {
+    //llamar al método listarPersonas del sevicio
+    this.httpCliente.obtenerUsuarios().subscribe((x) => {
+      //listacompleta que inyecta datos al atributo datasource de tabla
+      this.dataSource2.data = x;
+      //filtro de paginación
+      this.dataSource2.paginator = this.paginator;
+      //filtro para ordenación
+      this.dataSource2.sort = this.sort;
     });
   }
 
@@ -82,5 +111,53 @@ export class MenuComponent {
         this.gestionMensajes();
       });
     }
+  }
+
+  activarMsg(idMensaje: string) {
+    this.httpCliente.activarMensaje(Number(idMensaje)).subscribe(
+      (response) => {
+        console.log('Mensaje activado', response);
+        // Actualiza la lista de mensajes o realiza otras acciones aquí
+      },
+      (error) => {
+        console.error('Error al activar el mensaje', error);
+      }
+    );
+  }
+  bloquearMsg(idMensaje: string) {
+    this.httpCliente.bloquearMensaje(Number(idMensaje)).subscribe(
+      (response) => {
+        console.log('Mensaje bloqueado', response);
+        // Actualiza la lista de mensajes o realiza otras acciones aquí
+      },
+      (error) => {
+        console.error('Error al bloquear el mensaje', error);
+      }
+    );
+  }
+
+  bloquearUsuario(idUsuario: string) {
+    const usuario = { idUsuario: Number(idUsuario) }; // Asume que Usuario solo necesita idUsuario
+    this.httpCliente.bloquearUsuario(usuario).subscribe(
+      (response) => {
+        console.log('Usuario bloqueado', response);
+        // Actualiza la lista de usuarios o realiza otras acciones aquí
+      },
+      (error) => {
+        console.error('Error al bloquear el usuario', error);
+      }
+    );
+  }
+  activarUsuario(idUsuario: string) {
+    const usuario = { idUsuario: Number(idUsuario) }; // Asume que Usuario solo necesita idUsuario
+    this.httpCliente.activarUsuario(usuario).subscribe(
+      (response) => {
+        console.log('Usuario activado', response);
+        // Actualiza la lista de usuarios o realiza otras acciones aquí
+      },
+      (error) => {
+        console.error('Error al activar el usuario', error);
+      }
+    );
   }
 }
