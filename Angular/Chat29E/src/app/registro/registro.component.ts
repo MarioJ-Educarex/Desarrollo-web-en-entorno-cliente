@@ -30,7 +30,7 @@ export class RegistroComponent {
         email: this.form.value.email,
         pwd: this.form.value.contrasena,
         idUsuario: 0,
-        activo: ''
+        activo: 1
       };
 
       this.servicioChatService.altaUsuario(usuario).subscribe(

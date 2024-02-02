@@ -33,7 +33,7 @@ export class LoginComponent {
               sessionStorage.setItem('Nombre',usuario[0].nombre);
 
               if(sessionStorage.getItem('Nombre')=="admin"){
-                this.router.navigate(['menu/']);
+                this.router.navigate(['/menu']);
               } else{
                 this.router.navigate(['/chat']);
               }
