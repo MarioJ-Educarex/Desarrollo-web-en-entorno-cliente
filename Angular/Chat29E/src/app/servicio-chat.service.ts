@@ -45,16 +45,12 @@ export class ServicioChatService {
     return this.http.post<Usuario>(`${this.url}AltaUsuario.php`, usuario);
   }
 
-  activarMensaje(idMensaje: number): Observable<Chat> {
-    return this.http.get<Chat>(
-      `${this.url}ActivarMensaje.php?idMensaje=${idMensaje}`
-    );
+  activarMensaje(idMensaje: string): Observable<Chat> {
+    return this.http.post<Chat>(`${this.url}ActivarMensaje.php`, idMensaje);
   }
 
-  bloquearMensaje(idMensaje: number): Observable<Chat> {
-    return this.http.get<Chat>(
-      `${this.url}BloquearMensaje.php?idMensaje=${idMensaje}`
-    );
+  bloquearMensaje(idMensaje: string): Observable<Chat> {
+    return this.http.put<Chat>(`${this.url}BloquearMensaje.php`, idMensaje);
   }
 
   obtenerMensajes(): Observable<Chat[]> {
@@ -66,10 +62,13 @@ export class ServicioChatService {
   }
 
   activarUsuario(usuario: Usuario): Observable<Usuario> {
+    // alert('ACTIVAR Usuario: ' + usuario.idUsuario);
+
     return this.http.post<Usuario>(`${this.url}ActivarUsuario.php`, usuario);
   }
 
   bloquearUsuario(usuario: Usuario): Observable<Usuario> {
+    // alert('DESACTIVAR Usuario: ' + usuario.activo);
     return this.http.post<Usuario>(`${this.url}BloquearUsuario.php`, usuario);
   }
 
@@ -80,7 +79,9 @@ export class ServicioChatService {
   //PARTE PRIVADA
 
   obtenerMensajesPrivados(usuario: string): Observable<Chat[]> {
-    return this.http.get<Chat[]>(`${this.url}ObtenerMensajesP.php?usuario=${usuario}`);
+    return this.http.get<Chat[]>(
+      `${this.url}ObtenerMensajesP.php?usuario=${usuario}`
+    );
   }
 
   obtenerUsuariosP(): Observable<Usuario[]> {
@@ -94,8 +95,10 @@ export class ServicioChatService {
     return this.http.post<Chat>(`${this.url}AltaMensajeP.php`, mensaje);
   }
 
-  obtenerMensajesEnviados(): Observable<Chat[]> {
-    return this.http.get<Chat[]>(`${this.url}ObtenerMensajesE.php`);
+  obtenerMensajesEnviados(usuario: string): Observable<Chat[]> {
+    return this.http.get<Chat[]>(
+      `${this.url}ObtenerMensajesE.php?usuario=${usuario}`
+    );
   }
 
   obtenerMensajesRecibidos(): Observable<Chat[]> {

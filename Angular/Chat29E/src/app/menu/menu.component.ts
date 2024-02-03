@@ -113,25 +113,29 @@ export class MenuComponent {
     }
   }
 
+
   activarMsg(idMensaje: string) {
-    this.httpCliente.activarMensaje(Number(idMensaje)).subscribe(
+    console.log("activarMsg: "+idMensaje);
+    this.httpCliente.activarMensaje(idMensaje).subscribe(
       (response) => {
-        console.log('Mensaje activado', response);
-        // Actualiza la lista de mensajes o realiza otras acciones aquí
+        console.log('Hola Mensaje activado', response);
       },
       (error) => {
-        console.error('Error al activar el mensaje', error);
+        console.error('Hola Error al activar el mensaje', error);
+
+
       }
     );
   }
   bloquearMsg(idMensaje: string) {
-    this.httpCliente.bloquearMensaje(Number(idMensaje)).subscribe(
+    console.log("activarMsg: "+idMensaje);
+
+    this.httpCliente.bloquearMensaje(idMensaje).subscribe(
       (response) => {
-        console.log('Mensaje bloqueado', response);
-        // Actualiza la lista de mensajes o realiza otras acciones aquí
+        console.log('Hola Mensaje bloqueado', response);
       },
       (error) => {
-        console.error('Error al bloquear el mensaje', error);
+        console.error('Hola Error al bloquear el mensaje', error);
       }
     );
   }
@@ -141,7 +145,6 @@ export class MenuComponent {
     this.httpCliente.bloquearUsuario(idUsuario).subscribe(
       (response) => {
         console.log('Usuario bloqueado', response);
-        // Actualiza la lista de usuarios o realiza otras acciones aquí
       },
       (error) => {
         console.error('Error al bloquear el usuario', error);
@@ -153,7 +156,6 @@ export class MenuComponent {
     this.httpCliente.activarUsuario(idUsuario).subscribe(
       (response) => {
         console.log('Usuario activado', response);
-        // Actualiza la lista de usuarios o realiza otras acciones aquí
       },
       (error) => {
         console.error('Error al activar el usuario', error);

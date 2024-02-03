@@ -52,7 +52,7 @@ export class ChatPrivadoComponent {
 
   gestionMensajesEnviados() {
     //llamar al método listarPersonas del sevicio
-    this.httpCliente.obtenerMensajesEnviados().subscribe((x) => {
+    this.httpCliente.obtenerMensajesEnviados(this.miParametro).subscribe((x) => {
       //listacompleta que inyecta datos al atributo datasource de tabla
       this.dataSource2.data = x;
       //filtro de paginación
