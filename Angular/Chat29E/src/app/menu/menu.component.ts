@@ -136,9 +136,9 @@ export class MenuComponent {
     );
   }
 
-  bloquearUsuario(idUsuario: string) {
-    const usuario = { idUsuario: Number(idUsuario) }; // Asume que Usuario solo necesita idUsuario
-    this.httpCliente.bloquearUsuario(usuario).subscribe(
+  bloquearUsuario(idUsuario: Usuario) {
+    // const usuario = { idUsuario: Number(idUsuario) }; // Asume que Usuario solo necesita idUsuario
+    this.httpCliente.bloquearUsuario(idUsuario).subscribe(
       (response) => {
         console.log('Usuario bloqueado', response);
         // Actualiza la lista de usuarios o realiza otras acciones aquí
@@ -148,9 +148,9 @@ export class MenuComponent {
       }
     );
   }
-  activarUsuario(idUsuario: string) {
-    const usuario = { idUsuario: Number(idUsuario) }; // Asume que Usuario solo necesita idUsuario
-    this.httpCliente.activarUsuario(usuario).subscribe(
+  activarUsuario(idUsuario: Usuario) {
+    // const usuario = { idUsuario: Number(idUsuario) }; // Asume que Usuario solo necesita idUsuario
+    this.httpCliente.activarUsuario(idUsuario).subscribe(
       (response) => {
         console.log('Usuario activado', response);
         // Actualiza la lista de usuarios o realiza otras acciones aquí
