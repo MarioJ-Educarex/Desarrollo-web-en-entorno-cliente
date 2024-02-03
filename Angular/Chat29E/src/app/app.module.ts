@@ -24,7 +24,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ChatPrivadoComponent } from './chat-privado/chat-privado.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { MatInputModule } from '@angular/material/input';
     LoginComponent,
     RegistroComponent,
     ChatMaterialComponent,
+    ChatPrivadoComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,8 @@ import { MatInputModule } from '@angular/material/input';
     MatPaginatorModule,
     MatSelectModule,
     MatTableModule,
-    MatInputModule
+    MatInputModule,
+    MatCheckboxModule
 
   ],
   providers: [],

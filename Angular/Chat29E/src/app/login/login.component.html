@@ -13,6 +13,9 @@
           <input type="password" matInput placeholder="Contraseña" formControlName="contraseña">
         </mat-form-field>
       </p>
+      <mat-checkbox formControlName="chatPrivado">
+        Privado
+      </mat-checkbox>
 
       <p *ngIf="error" class="error">
         {{ error }}

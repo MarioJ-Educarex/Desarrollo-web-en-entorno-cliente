@@ -77,6 +77,31 @@ export class ServicioChatService {
     return this.http.get<Usuario[]>(`${this.url}ObtenerUsuarios.php`);
   }
 
+  //PARTE PRIVADA
+
+  obtenerMensajesPrivados(usuario: string): Observable<Chat[]> {
+    return this.http.get<Chat[]>(`${this.url}ObtenerMensajesP.php?usuario=${usuario}`);
+  }
+
+  obtenerUsuariosP(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(`${this.url}ObtenerUsuarios2.php`);
+  }
+
+  altaMensajePrivado(mensaje: Chat): Observable<Chat> {
+    let fecha = new Date();
+
+    mensaje.fecha = formatDate(fecha, 'HH:mm:ss/dd-MM-yyyy', this.locale);
+    return this.http.post<Chat>(`${this.url}AltaMensajeP.php`, mensaje);
+  }
+
+  obtenerMensajesEnviados(): Observable<Chat[]> {
+    return this.http.get<Chat[]>(`${this.url}ObtenerMensajesE.php`);
+  }
+
+  obtenerMensajesRecibidos(): Observable<Chat[]> {
+    return this.http.get<Chat[]>(`${this.url}ObtenerMensajesP.php`);
+  }
+
   constructor(
     private http: HttpClient,
     @Inject(LOCALE_ID) public locale: string
