@@ -5,24 +5,35 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Chat } from '../chat';
 import { ServicioChatService } from '../servicio-chat.service';
+import { MensajePriv } from '../mensaje-priv';
 
 @Component({
   selector: 'app-chat-privado',
   templateUrl: './chat-privado.component.html',
-  styleUrls: ['./chat-privado.component.css']
+  styleUrls: ['./chat-privado.component.css'],
 })
 export class ChatPrivadoComponent {
   miParametro: string = sessionStorage.getItem('Nombre') || '';
-  msjchat = { mensaje: '' };
+  // msjchat = { mensaje: '' };
+
+  msjchat: MensajePriv = {
+    id: 0,
+    usuario: '',
+    fecha: '',
+    mensaje: '',
+    destinatario: '',
+    activo: 1,
+  };
 
   cerrarSesion() {
-    sessionStorage.clear();
-    this.router.navigate(['/login']);
+    this.miParametro = 'sesión cerrada';
+    sessionStorage.removeItem('Nombre');
+    this.dataSource = new MatTableDataSource<MensajePriv>();
   }
 
   columnas: string[] = ['id', 'fecha', 'usuario', 'mensaje', 'destinatario'];
   columnas2: string[] = ['id', 'fecha', 'usuario', 'mensaje', 'destinatario'];
-  dataSource = new MatTableDataSource<Chat>();
+  dataSource = new MatTableDataSource<MensajePriv>();
   dataSource2 = new MatTableDataSource<Chat>();
 
   @ViewChild(MatPaginator, { static: true })
@@ -34,32 +45,38 @@ export class ChatPrivadoComponent {
     private httpCliente: ServicioChatService,
     private router: Router
   ) {
-    this.gestionMensajesRecibido();
+    if (this.miParametro == sessionStorage.getItem('Nombre')) {
+      this.gestionMensajesRecibido();
+    }
     this.gestionMensajesEnviados();
   }
 
   gestionMensajesRecibido() {
     //llamar al método listarPersonas del sevicio
-    this.httpCliente.obtenerMensajesPrivados(this.miParametro).subscribe((x) => {
-      //listacompleta que inyecta datos al atributo datasource de tabla
-      this.dataSource.data = x;
-      //filtro de paginación
-      this.dataSource.paginator = this.paginator;
-      //filtro para ordenación
-      this.dataSource.sort = this.sort;
-    });
+    this.httpCliente
+      .obtenerMensajesPrivados(this.miParametro)
+      .subscribe((x) => {
+        //listacompleta que inyecta datos al atributo datasource de tabla
+        this.dataSource.data = x;
+        //filtro de paginación
+        this.dataSource.paginator = this.paginator;
+        //filtro para ordenación
+        this.dataSource.sort = this.sort;
+      });
   }
 
   gestionMensajesEnviados() {
     //llamar al método listarPersonas del sevicio
-    this.httpCliente.obtenerMensajesEnviados(this.miParametro).subscribe((x) => {
-      //listacompleta que inyecta datos al atributo datasource de tabla
-      this.dataSource2.data = x;
-      //filtro de paginación
-      this.dataSource2.paginator = this.paginator;
-      //filtro para ordenación
-      this.dataSource2.sort = this.sort;
-    });
+    this.httpCliente
+      .obtenerMensajesEnviados(this.miParametro)
+      .subscribe((x) => {
+        //listacompleta que inyecta datos al atributo datasource de tabla
+        this.dataSource2.data = x;
+        //filtro de paginación
+        this.dataSource2.paginator = this.paginator;
+        //filtro para ordenación
+        this.dataSource2.sort = this.sort;
+      });
   }
 
   ngAfterViewInit() {
@@ -77,12 +94,14 @@ export class ChatPrivadoComponent {
   }
 
   mandar() {
-    if (this.miParametro) {
-      const nuevoMensaje: Chat = {
-        mensaje: this.msjchat.mensaje,
+    if (this.miParametro == sessionStorage.getItem('Nombre')) {
+      const nuevoMensaje: MensajePriv = {
         id: 0,
-        usuario: this.miParametro,
+        usuario: 'Mario',
         fecha: '',
+        mensaje: this.msjchat.mensaje,
+        destinatario: this.msjchat.destinatario,
+        activo: 1,
       };
 
       this.httpCliente.altaMensajePrivado(nuevoMensaje).subscribe(() => {

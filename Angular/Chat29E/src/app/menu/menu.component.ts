@@ -20,11 +20,17 @@ export class MenuComponent {
   miParametro: string = sessionStorage.getItem('Nombre') || '';
   msjchat = { mensaje: '' };
 
-  cerrarSesion() {
+  cerrarSesionU() {
+    sessionStorage.removeItem('Nombre');
+    this.dataSource2 = new MatTableDataSource<Usuario>();
     sessionStorage.clear();
-    this.router.navigate(['/login']);
   }
 
+  cerrarSesionM() {
+    sessionStorage.removeItem('Nombre');
+    this.dataSource = new MatTableDataSource<Chat>();
+    sessionStorage.clear();
+  }
   columnas: string[] = [
     'id',
     'fecha',
@@ -55,8 +61,10 @@ export class MenuComponent {
     private httpCliente: ServicioChatService,
     private router: Router
   ) {
-    this.gestionMensajes();
-    this.gestionUsuarios();
+    if (this.miParametro) {
+      this.gestionMensajes();
+      this.gestionUsuarios();
+    }
   }
 
   gestionMensajes() {
@@ -113,26 +121,25 @@ export class MenuComponent {
     }
   }
 
-
-  activarMsg(idMensaje: string) {
-    console.log("activarMsg: "+idMensaje);
-    this.httpCliente.activarMensaje(idMensaje).subscribe(
+  activarMsg(mensaje: Chat) {
+    console.log('activarMsg: ' + mensaje);
+    this.httpCliente.activarMensaje(mensaje).subscribe(
       (response) => {
-        console.log('Hola Mensaje activado', response);
+        alert('Mensaje activado');
+        this.gestionMensajes();
       },
       (error) => {
-        console.error('Hola Error al activar el mensaje', error);
-
-
+        console.error('Error al activar el mensaje', error);
       }
     );
   }
-  bloquearMsg(idMensaje: string) {
-    console.log("activarMsg: "+idMensaje);
+  bloquearMsg(mensaje: Chat) {
+    console.log('activarMsg: ' + mensaje);
 
-    this.httpCliente.bloquearMensaje(idMensaje).subscribe(
+    this.httpCliente.bloquearMensaje(mensaje).subscribe(
       (response) => {
-        console.log('Hola Mensaje bloqueado', response);
+        alert('Mensaje bloqueado');
+        this.gestionMensajes();
       },
       (error) => {
         console.error('Hola Error al bloquear el mensaje', error);
@@ -144,7 +151,8 @@ export class MenuComponent {
     // const usuario = { idUsuario: Number(idUsuario) }; // Asume que Usuario solo necesita idUsuario
     this.httpCliente.bloquearUsuario(idUsuario).subscribe(
       (response) => {
-        console.log('Usuario bloqueado', response);
+        alert('Usuario bloqueado');
+        this.gestionUsuarios();
       },
       (error) => {
         console.error('Error al bloquear el usuario', error);
@@ -155,7 +163,8 @@ export class MenuComponent {
     // const usuario = { idUsuario: Number(idUsuario) }; // Asume que Usuario solo necesita idUsuario
     this.httpCliente.activarUsuario(idUsuario).subscribe(
       (response) => {
-        console.log('Usuario activado', response);
+        alert('Usuario activado');
+        this.gestionUsuarios();
       },
       (error) => {
         console.error('Error al activar el usuario', error);

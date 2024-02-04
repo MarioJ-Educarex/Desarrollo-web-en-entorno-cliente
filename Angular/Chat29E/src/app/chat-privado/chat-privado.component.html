@@ -13,12 +13,15 @@
 <div class="mat-elevation-z8">
   <form class="example-form">
     <mat-form-field class="example-full-width">
+      <mat-label>Nombre del destinatario</mat-label>
+      <input matInput  [(ngModel)]="msjchat.destinatario" name="destinatario" >
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
       <mat-label>Escribe mensaje y pulsa enter</mat-label>
       <input matInput placeholder="Enter al finalizar" [(ngModel)]="msjchat.mensaje" name="mensaje"
         (keydown.enter)="mandar()">
     </mat-form-field>
-
-
   </form>
 
   <mat-label>Mensajes recibidos por {{miParametro}}</mat-label>

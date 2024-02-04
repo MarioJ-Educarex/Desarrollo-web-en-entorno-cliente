@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { formatDate } from '@angular/common';
 import { Chat } from './chat';
 import { Usuario } from './usuario';
+import { MensajePriv } from './mensaje-priv';
 
 @Injectable({
   providedIn: 'root',
@@ -45,12 +46,18 @@ export class ServicioChatService {
     return this.http.post<Usuario>(`${this.url}AltaUsuario.php`, usuario);
   }
 
-  activarMensaje(idMensaje: string): Observable<Chat> {
-    return this.http.post<Chat>(`${this.url}ActivarMensaje.php`, idMensaje);
+  activarMensaje(mensaje: Chat) {
+    return this.http.put<Chat>(
+      'http://moralo.atwebpages.com/chat/ActivarMensaje.php',
+      mensaje
+    );
   }
 
-  bloquearMensaje(idMensaje: string): Observable<Chat> {
-    return this.http.put<Chat>(`${this.url}BloquearMensaje.php`, idMensaje);
+  bloquearMensaje(mensaje: Chat) {
+    return this.http.put<Chat>(
+      'http://moralo.atwebpages.com/chat/BloquearMensaje.php',
+      mensaje
+    );
   }
 
   obtenerMensajes(): Observable<Chat[]> {
@@ -61,15 +68,15 @@ export class ServicioChatService {
     return this.http.get<Chat[]>(`${this.url}ObtenerMensajes2.php`);
   }
 
-  activarUsuario(usuario: Usuario): Observable<Usuario> {
+  activarUsuario(usuario: Usuario) {
     // alert('ACTIVAR Usuario: ' + usuario.idUsuario);
 
-    return this.http.post<Usuario>(`${this.url}ActivarUsuario.php`, usuario);
+    return this.http.put<Usuario>('http://moralo.atwebpages.com/chat/ActivarUsuario.php', usuario);
   }
 
-  bloquearUsuario(usuario: Usuario): Observable<Usuario> {
+  bloquearUsuario(usuario: Usuario) {
     // alert('DESACTIVAR Usuario: ' + usuario.activo);
-    return this.http.post<Usuario>(`${this.url}BloquearUsuario.php`, usuario);
+    return this.http.put<Usuario>('http://moralo.atwebpages.com/chat/BloquearUsuario.php', usuario);
   }
 
   obtenerUsuarios(): Observable<Usuario[]> {
@@ -78,8 +85,8 @@ export class ServicioChatService {
 
   //PARTE PRIVADA
 
-  obtenerMensajesPrivados(usuario: string): Observable<Chat[]> {
-    return this.http.get<Chat[]>(
+  obtenerMensajesPrivados(usuario: string): Observable<MensajePriv[]> {
+    return this.http.get<MensajePriv[]>(
       `${this.url}ObtenerMensajesP.php?usuario=${usuario}`
     );
   }
@@ -95,8 +102,8 @@ export class ServicioChatService {
     return this.http.post<Chat>(`${this.url}AltaMensajeP.php`, mensaje);
   }
 
-  obtenerMensajesEnviados(usuario: string): Observable<Chat[]> {
-    return this.http.get<Chat[]>(
+  obtenerMensajesEnviados(usuario: string): Observable<MensajePriv[]> {
+    return this.http.get<MensajePriv[]>(
       `${this.url}ObtenerMensajesE.php?usuario=${usuario}`
     );
   }

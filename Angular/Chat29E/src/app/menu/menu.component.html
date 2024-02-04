@@ -1,14 +1,10 @@
 <mat-divider></mat-divider>
 
-<button mat-raised-button color="primary" (click)="cerrarSesion()">Cerrar Sesión</button>
-
-<mat-label>Usuario : {{miParametro}}</mat-label>
-
-<h1>Bloquear/Activar MENSAJES</h1>
+<button mat-raised-button color="primary" (click)="cerrarSesionM()">Cerrar Sesión</button>
 
 <mat-form-field>
   <mat-label>
-    Buscar en el chat </mat-label>
+    <p>Bloquear/Activar MENSAJES </p> Buscar en el chat</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input>
 </mat-form-field>
 
@@ -57,14 +53,14 @@
     <ng-container matColumnDef="bloquear">
       <th mat-header-cell *matHeaderCellDef> Bloquear </th>
       <td mat-cell *matCellDef="let mensaje"> <button mat-raised-button color="warn"
-          (click)="bloquearMsg(mensaje.id)">Bloquear</button> </td>
+          (click)="bloquearMsg(mensaje)">Bloquear</button> </td>
     </ng-container>
 
     <!-- Activar Column -->
     <ng-container matColumnDef="activar">
       <th mat-header-cell *matHeaderCellDef> Activar </th>
       <td mat-cell *matCellDef="let mensaje"> <button mat-raised-button color="primary"
-          (click)="activarMsg(mensaje.id)">Activar</button> </td>
+          (click)="activarMsg(mensaje)">Activar</button> </td>
     </ng-container>
 
 
@@ -83,15 +79,11 @@
 
 <mat-divider></mat-divider>
 
-<button mat-raised-button color="primary" (click)="cerrarSesion()">Cerrar Sesión</button>
-
-<mat-label>Usuario : {{miParametro}}</mat-label>
-
-<h1>Bloquear/Activar USUARIOS</h1>
+<button mat-raised-button color="primary" (click)="cerrarSesionU()">Cerrar Sesión</button>
 
 <mat-form-field>
   <mat-label>
-    Buscar en el chat </mat-label>
+    <p>Bloquear/Activar USUARIOS </p> Buscar en el chat </mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input>
 </mat-form-field>
 
