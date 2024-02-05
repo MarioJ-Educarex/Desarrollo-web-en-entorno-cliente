@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -12,7 +12,7 @@ import { MensajePriv } from '../mensaje-priv';
   templateUrl: './chat-privado.component.html',
   styleUrls: ['./chat-privado.component.css'],
 })
-export class ChatPrivadoComponent {
+export class ChatPrivadoComponent implements OnInit {
   miParametro: string = sessionStorage.getItem('Nombre') || '';
   // msjchat = { mensaje: '' };
 
@@ -24,6 +24,7 @@ export class ChatPrivadoComponent {
     destinatario: '',
     activo: 1,
   };
+  datos: MensajePriv[] = [];
 
   cerrarSesion() {
     this.miParametro = 'sesión cerrada';
@@ -34,7 +35,7 @@ export class ChatPrivadoComponent {
   columnas: string[] = ['id', 'fecha', 'usuario', 'mensaje', 'destinatario'];
   columnas2: string[] = ['id', 'fecha', 'usuario', 'mensaje', 'destinatario'];
   dataSource = new MatTableDataSource<MensajePriv>();
-  dataSource2 = new MatTableDataSource<Chat>();
+  dataSource2 = new MatTableDataSource<MensajePriv>();
 
   @ViewChild(MatPaginator, { static: true })
   paginator!: MatPaginator;
@@ -45,6 +46,12 @@ export class ChatPrivadoComponent {
     private httpCliente: ServicioChatService,
     private router: Router
   ) {
+    if (this.miParametro == sessionStorage.getItem('Nombre')) {
+      this.gestionMensajesRecibido();
+    }
+    this.gestionMensajesEnviados();
+  }
+  ngOnInit(): void {
     if (this.miParametro == sessionStorage.getItem('Nombre')) {
       this.gestionMensajesRecibido();
     }
@@ -70,19 +77,23 @@ export class ChatPrivadoComponent {
     this.httpCliente
       .obtenerMensajesEnviados(this.miParametro)
       .subscribe((x) => {
+        console.log(x);
+
         //listacompleta que inyecta datos al atributo datasource de tabla
         this.dataSource2.data = x;
         //filtro de paginación
         this.dataSource2.paginator = this.paginator;
         //filtro para ordenación
         this.dataSource2.sort = this.sort;
+        this.dataSource._updateChangeSubscription;
+
       });
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  //   this.dataSource.sort = this.sort;
+  // }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -105,8 +116,16 @@ export class ChatPrivadoComponent {
       };
 
       this.httpCliente.altaMensajePrivado(nuevoMensaje).subscribe(() => {
+        this.httpCliente
+          .obtenerMensajesPrivados(this.miParametro)
+          .subscribe((result: MensajePriv[]) => {
+            this.datos = result;
+            this.dataSource2.data = result;
+            this.dataSource2.paginator = this.paginator;
+            this.dataSource2.sort = this.sort;
+            this.dataSource2._updateChangeSubscription;
+          });
         this.msjchat.mensaje = '';
-        this.gestionMensajesRecibido();
       });
     }
   }

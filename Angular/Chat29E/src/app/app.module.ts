@@ -26,7 +26,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ChatPrivadoComponent } from './chat-privado/chat-privado.component';
-
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -57,7 +57,8 @@ import { ChatPrivadoComponent } from './chat-privado/chat-privado.component';
     MatSelectModule,
     MatTableModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSortModule
 
   ],
   providers: [],

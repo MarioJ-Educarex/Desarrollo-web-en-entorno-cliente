@@ -95,16 +95,16 @@ export class ServicioChatService {
     return this.http.get<Usuario[]>(`${this.url}ObtenerUsuarios2.php`);
   }
 
-  altaMensajePrivado(mensaje: Chat): Observable<Chat> {
+  altaMensajePrivado(mensaje: MensajePriv): Observable<MensajePriv> {
     let fecha = new Date();
 
     mensaje.fecha = formatDate(fecha, 'HH:mm:ss/dd-MM-yyyy', this.locale);
-    return this.http.post<Chat>(`${this.url}AltaMensajeP.php`, mensaje);
+    return this.http.put<MensajePriv>(`${this.url}AltaMensajeP.php`, mensaje);
   }
 
   obtenerMensajesEnviados(usuario: string): Observable<MensajePriv[]> {
     return this.http.get<MensajePriv[]>(
-      `${this.url}ObtenerMensajesE.php?usuario=${usuario}`
+      'http://moralo.atwebpages.com/menuAjax/chat/ObtenerMensajesE.php?usuario='+usuario
     );
   }
 
