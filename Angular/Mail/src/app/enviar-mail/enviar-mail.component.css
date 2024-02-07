@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   margin: 100px 0px;
+  background-color: white;
 }
 
 .mat-form-field {
@@ -13,16 +14,18 @@ mat-card-title,
 mat-card-content {
   display: flex;
   justify-content: center;
+  padding: 15px;
 }
 
-.error {
-  padding: 16px;
-  width: 300px;
-  color: white;
-  background-color: red;
+mat-form-field{
+  padding: 30px;
 }
 
-.button {
+
+/* .button {
   display: flex;
   justify-content: flex-end;
-}
+} */
+
+
+
