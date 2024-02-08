@@ -37,11 +37,11 @@ export class ServicioClienteService {
     );
   }
 
-  leerMensaje(id: Number): Observable<Correo> {
+  leerMensaje(mensaje: Correo) {
     //Hace un update por eso post
-    return this.httpClient.post<Correo>(
-      'http://moralo.atwebpages.com/serviciosMail/MandarMensajeMail.php',
-      id
+    return this.httpClient.post(
+      'http://moralo.atwebpages.com/serviciosMail/LeerMensaje.php',
+      mensaje, { responseType: 'text' }
     );
   }
 }

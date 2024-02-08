@@ -20,6 +20,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDividerModule } from '@angular/material/divider';
 import { HttpClientModule } from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
+import { NoLeidosComponent } from './no-leidos/no-leidos.component';
+import { LeidosComponent } from './leidos/leidos.component';
+import { EnviadosComponent } from './enviados/enviados.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +33,9 @@ import {MatCardModule} from '@angular/material/card';
     GmailComponent,
     EnviarMailComponent,
     RecibirMailComponent,
+    NoLeidosComponent,
+    LeidosComponent,
+    EnviadosComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +53,10 @@ import {MatCardModule} from '@angular/material/card';
     MatFormFieldModule,
     MatDividerModule,
     HttpClientModule,
-    MatCardModule
+    MatCardModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent],

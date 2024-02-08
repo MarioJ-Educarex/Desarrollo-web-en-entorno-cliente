@@ -1,17 +1,16 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit,Component, OnInit, ViewChild } from '@angular/core';
+import { Correo } from '../correo';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Correo } from '../correo';
 import { ServicioClienteService } from '../servicio-cliente.service';
 
 @Component({
-  selector: 'app-recibir-mail',
-  templateUrl: './recibir-mail.component.html',
-  styleUrls: ['./recibir-mail.component.css'],
+  selector: 'app-no-leidos',
+  templateUrl: './no-leidos.component.html',
+  styleUrls: ['./no-leidos.component.css']
 })
-export class RecibirMailComponent implements OnInit {
-
+export class NoLeidosComponent implements OnInit {
   dataSource = new MatTableDataSource<Correo>();
   columnas: string[] = [
     'id',
@@ -21,20 +20,8 @@ export class RecibirMailComponent implements OnInit {
     'asunto',
     'fecha',
     'leido',
-    'leer'
   ];
   nombreUs: string = 'Mario';
-
-  mail: Correo = {
-    id: 0,
-    origen: this.nombreUs,
-    destinatario: '',
-    mensaje: '',
-    asunto: '',
-    fecha: new Date().toString(),
-    leido: 0,
-  };
-
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -48,22 +35,6 @@ export class RecibirMailComponent implements OnInit {
   }
 
   listarMail() {
-    this.httpClient.mostrarTodosMensajes(this.nombreUs).subscribe((mensaje) => {
-      this.dataSource.data = mensaje;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    });
-  }
-
-  leer(mensage: Correo) {
-    this.httpClient.leerMensaje(mensage).subscribe((mensaje) => {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      this.listarNoLeidos();
-    });
-  }
-
-  listarNoLeidos() {
     this.httpClient.mostrarMensajesNoLeidos(this.nombreUs).subscribe((mensaje) => {
       this.dataSource.data = mensaje;
       this.dataSource.paginator = this.paginator;
