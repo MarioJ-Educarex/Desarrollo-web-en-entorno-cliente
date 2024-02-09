@@ -11,7 +11,6 @@ import { ServicioClienteService } from '../servicio-cliente.service';
   styleUrls: ['./recibir-mail.component.css'],
 })
 export class RecibirMailComponent implements OnInit {
-
   dataSource = new MatTableDataSource<Correo>();
   columnas: string[] = [
     'id',
@@ -21,7 +20,8 @@ export class RecibirMailComponent implements OnInit {
     'asunto',
     'fecha',
     'leido',
-    'leer'
+    'leer',
+    'borrar'
   ];
   nombreUs: string = 'Mario';
 
@@ -34,7 +34,6 @@ export class RecibirMailComponent implements OnInit {
     fecha: new Date().toString(),
     leido: 0,
   };
-
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -64,10 +63,18 @@ export class RecibirMailComponent implements OnInit {
   }
 
   listarNoLeidos() {
-    this.httpClient.mostrarMensajesNoLeidos(this.nombreUs).subscribe((mensaje) => {
-      this.dataSource.data = mensaje;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+    this.httpClient
+      .mostrarMensajesNoLeidos(this.nombreUs)
+      .subscribe((mensaje) => {
+        this.dataSource.data = mensaje;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
+  }
+
+  borrarMensaje(mensaje: Correo) {
+    this.httpClient.borrarMensaje(mensaje).subscribe(() => {
+      this.listarMail();
     });
   }
 

@@ -41,7 +41,15 @@ export class ServicioClienteService {
     //Hace un update por eso post
     return this.httpClient.post(
       'http://moralo.atwebpages.com/serviciosMail/LeerMensaje.php',
-      mensaje, { responseType: 'text' }
+      mensaje,
+      { responseType: 'text' }
+    );
+  }
+
+  borrarMensaje(mensaje: Correo) {
+    //Hace un update por eso post
+    return this.httpClient.delete(
+      'http://moralo.atwebpages.com/serviciosMail/eliminarMail.php?=' + mensaje
     );
   }
 }
