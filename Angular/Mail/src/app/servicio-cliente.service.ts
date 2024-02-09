@@ -49,7 +49,7 @@ export class ServicioClienteService {
   borrarMensaje(mensaje: Correo) {
     //Hace un update por eso post
     return this.httpClient.delete(
-      'http://moralo.atwebpages.com/serviciosMail/eliminarMail.php?=' + mensaje
+      'http://moralo.atwebpages.com/serviciosMail/eliminarMail.php?id=' + mensaje.id
     );
   }
 }
