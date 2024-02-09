@@ -1,27 +1,28 @@
 <div class="container">
   <mat-divider></mat-divider>
   <mat-card-title>USUARIO: {{usuario}}</mat-card-title>
+  <input (keydown.enter)="buscarUsuario()" matInput [(ngModel)]="password">
   <!-- <mat-label style="font-weight: bold;">USUARIO: {{usuario}}</mat-label> -->
   <mat-divider></mat-divider>
   <mat-divider></mat-divider>
   <mat-card-content>
-  <mat-form-field>
-    <mat-label>Destinatario</mat-label>
-    <input matInput [(ngModel)]="mail.destinatario">
-  </mat-form-field>
-  <mat-divider></mat-divider>
+    <mat-form-field>
+      <mat-label>Destinatario</mat-label>
+      <input matInput [(ngModel)]="mail.destinatario">
+    </mat-form-field>
+    <mat-divider></mat-divider>
 
-  <mat-form-field>
-    <mat-label>Asunto</mat-label>
-    <textarea matInput [(ngModel)]="mail.asunto"></textarea>
-  </mat-form-field>
-  <mat-divider></mat-divider>
+    <mat-form-field>
+      <mat-label>Asunto</mat-label>
+      <textarea matInput [(ngModel)]="mail.asunto"></textarea>
+    </mat-form-field>
+    <mat-divider></mat-divider>
 
-  <mat-form-field style="width: 90%;">
-    <mat-label>Mensaje</mat-label>
-    <textarea matInput [(ngModel)]="mail.mensaje"></textarea>
-  </mat-form-field>
-  <mat-divider></mat-divider>
-</mat-card-content>
+    <mat-form-field style="width: 90%;">
+      <mat-label>Mensaje</mat-label>
+      <textarea matInput [(ngModel)]="mail.mensaje"></textarea>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+  </mat-card-content>
   <button mat-raised-button color="accent" (click)="enviar()">Enviar</button>
 </div>

@@ -9,6 +9,7 @@ import { ServicioClienteService } from '../servicio-cliente.service';
 })
 export class EnviarMailComponent {
   usuario: string = 'Mario';
+  password!: string;
 
   constructor(private httpCliente: ServicioClienteService) {}
 
@@ -23,7 +24,7 @@ export class EnviarMailComponent {
   };
 
   enviar() {
-    this.mail.origen=this.usuario;
+    this.mail.origen = this.usuario;
     this.httpCliente.escribirMensaje(this.mail).subscribe((x) => {
       alert('Mensaje enviado');
       console.log(x);
@@ -37,6 +38,12 @@ export class EnviarMailComponent {
         new Date().toString(),
         0
       );
+    });
+  }
+
+  buscarUsuario() {
+    this.httpCliente.loegeoUsuario(this.password).subscribe((x) => {
+      this.usuario = JSON.parse(x);
     });
   }
 }

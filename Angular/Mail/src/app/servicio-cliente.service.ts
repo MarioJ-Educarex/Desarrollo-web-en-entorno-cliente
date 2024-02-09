@@ -52,4 +52,11 @@ export class ServicioClienteService {
       'http://moralo.atwebpages.com/serviciosMail/eliminarMail.php?id=' + mensaje.id
     );
   }
+
+  loegeoUsuario(pwd: string): Observable<string> {
+    //Hace un update por eso post
+    return this.httpClient.get<string>(
+      'http://moralo.atwebpages.com/serviciosMail/logeoMail.php?pwd=' + pwd
+    );
+  }
 }

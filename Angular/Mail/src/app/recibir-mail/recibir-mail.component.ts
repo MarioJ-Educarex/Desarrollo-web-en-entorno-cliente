@@ -25,6 +25,7 @@ export class RecibirMailComponent implements OnInit {
   ];
   nombreUs: string = 'Mario';
 
+
   mail: Correo = {
     id: 0,
     origen: this.nombreUs,
