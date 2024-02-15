@@ -1,37 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-padre',
   templateUrl: './padre.component.html',
   styleUrls: ['./padre.component.css'],
 })
-export class PadreComponent {
-  resultadoSuma: number = 0;
-  resultadoDivision: number = 0;
-  resultadoResta: number = 0;
-  resultadoMutl: number = 0;
-
-  dividir(event: any) {
-    this.resultadoDivision = event.resultDivision;
-  }
-  sumar(event: any) {
-    this.resultadoSuma = event.resultSuma;
-  }
-  restar(event: any) {
-    this.resultadoResta = event.resultResta;
-  }
-  multiplicar(event: any) {
-    this.resultadoMutl = event.resultProducto;
-  }
-  numero1!: number;
-  numero2!: number;
-
-  constructor() {
-    this.numero1 = Math.round(Math.random() * 100);
-    this.numero2 = Math.round(Math.random() * 100);
-  }
-
-  generar() {
+export class PadreComponent implements OnInit {
+  ngOnInit(): void {}
+  recargar() {
     window.location.reload();
   }
+  recibir1(event: any) {
+    this.numero1 = event.Num1Aleat;
+  }
+  recibir2(event: any) {
+    this.numero2 = event.Num2Aleat;
+  }
+  generar() {
+    this.suma = this.numero1 + this.numero2;
+    this.producto = this.numero1 * this.numero2;
+  }
+  numero1: number = 0;
+  numero2: number = 0;
+  suma: number = 0;
+  producto: number = 0;
 }
