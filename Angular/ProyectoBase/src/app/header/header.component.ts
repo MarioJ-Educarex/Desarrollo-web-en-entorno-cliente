@@ -6,7 +6,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  @Input() infoCabecera: string = '';
+  @Input() infocabecera: string = '';
+
   @Output() clasePrincipal = new EventEmitter();
   claseNueva: string = '';
 
