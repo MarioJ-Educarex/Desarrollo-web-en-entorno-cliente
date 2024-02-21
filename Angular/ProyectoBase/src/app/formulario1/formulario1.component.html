@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-4">
+      <form [formGroup]="formulario1" (ngSubmit)="enviarDatos()">
+        <div class="form-group">
+          <!-- <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" id="nombre" formControlName="nombre"> -->
+
+          <!-- Nombre -->
+          <label for="name">Teclea nombre</label>
+          <input type="text" class="form-control is-valid" formControlName="name" name="name" id="inputName">
+          <div class="invalid-feedback">
+            Validation message
+          </div>
+
+          <!-- Apellido -->
+          <label for="firstName">Teclea Apellido</label>
+          <input type="text" class="form-control is-valid" formControlName="firstName" name="firstName" id="firstName">
+          <div class="invalid-feedback">
+            Validation message
+          </div>
+
+          <!-- Email -->
+          <label for="mail">Teclea email</label>
+          <input type="email" class="form-control is-valid" formControlName="mail" name="mail" id="mail">
+          <div class="invalid-feedback">
+            Validation message
+          </div>
+
+          <!-- Password -->
+          <label for="password">Teclea password</label>
+          <input type="password" class="form-control is-valid" formControlName="password" name="password" id="password">
+          <div class="invalid-feedback">
+            Validation message
+          </div>
+
+        </div>
+        <!-- TODO: This is for server side, there is another version for browser defaults -->
+        <button type="submit" class="btn btn-primary" [disabled]="formulario1.valid">Enviar</button>
+      </form>
+    </div>
+
+  </div>
+</div>

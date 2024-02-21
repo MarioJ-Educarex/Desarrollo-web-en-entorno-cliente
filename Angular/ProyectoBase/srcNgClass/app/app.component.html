@@ -1,0 +1,8 @@
+<app-header [infocabecera]="clase" (clasePrincipal)="cargarClasePrincipal($event)">
+</app-header>
+<app-body></app-body>
+<app-footer></app-footer>
+
+<p [ngClass]="claseRecibida">
+  Nombre de la clase recibida {{claseRecibida}} <input type="text" [(ngModel)]="clase">
+</p>

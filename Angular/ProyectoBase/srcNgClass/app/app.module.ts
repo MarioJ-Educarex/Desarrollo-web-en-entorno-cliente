@@ -3,20 +3,27 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Formulario1Component } from './formulario1/formulario1.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { BodyComponent } from './body/body.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
-    Formulario1Component
+    BodyComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
-    ],
+    RouterModule,
+    HttpClientModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
