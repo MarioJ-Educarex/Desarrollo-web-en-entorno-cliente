@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <h1 class="text-center mt-5">Formulario</h1>
+    <form (ngSubmit)="EnviarDatos()" [formGroup]="miformulario" action="">
+
+      <div class="form-group mt-5 mb-3">
+        <div class="input-group">
+          <label for="nombre" class="p-3">Nombre</label>
+          <input type="text" formControlName="nombre" name="nombre" id="nombre" class="form-control" placeholder=""
+            aria-describedby="helpId">
+        </div>
+
+        <small *ngIf="nombre?.invalid" class="text-danger" id="nombreS" class="text-muted">
+          <small *ngIf="nombre?.errors?.['required']" class="text-danger m-3">Nombre requerido</small>
+          <small *ngIf="nombre?.errors?.['maxlength']" class="text-danger m-3">No puede tener más de 20
+            caracteres</small>
+          <small *ngIf="nombre?.errors?.['minlength']" class="text-danger m-3">No puede tener menos de 3
+            caracteres</small>
+        </small>
+      </div>
+
+      <div class="form-group mb-3">
+        <div class="input-group">
+          <label for="apellido" class="p-3">Apellidos</label>
+          <input type="text" formControlName="apellido" name="apellido" id="apellido" class="form-control"
+            placeholder="" aria-describedby="helpId">
+        </div>
+
+        <small *ngIf="apellido?.invalid" id="apellidoS" class="text-muted">
+          <small *ngIf="apellido?.errors?.['required']" class="text-danger m-3">Apellido requerido</small>
+          <small *ngIf="apellido?.errors?.['maxlength']" class="text-danger m-3">No puede tener más de 20
+            caracteres</small>
+          <small *ngIf="apellido?.errors?.['minlength']" class="text-danger m-3">No puede tener menos de 3
+            caracteres</small>
+        </small>
+      </div>
+
+      <div class="form-group mb-3">
+        <div class="input-group">
+          <label for="fechaN" class="p-3">Fecha de Nacimiento</label>
+          <input type="date" formControlName="fechaN" name="fechaN" id="fechaN" class="form-control" placeholder=""
+            aria-describedby="helpId">
+        </div>
+
+        <small *ngIf="fechaN?.invalid" id="fechaNS" class="text-muted">
+          <small *ngIf="fechaN?.errors?.['required']" class="text-danger m-3">Fecha de nacimiento requerida</small>
+        </small>
+      </div>
+
+      <div class="form-group mb-3">
+        <div class="input-group">
+          <label for="tarjetaC" class="p-3">Número de Tarjeta</label>
+          <label for="tarjetaC" class="input-group-text p-3">IBAN</label>
+          <input type="text" formControlName="tarjetaC" name="tarjetaC" id="tarjetaC" class="form-control"
+            placeholder="" aria-describedby="helpId">
+        </div>
+
+        <small *ngIf="tarjetaC?.invalid" id="tarjetaCS" class="text-muted">
+          <small *ngIf="tarjetaC?.errors?.['required']" class="text-danger m-3">Tarjeta requerida</small>
+          <small *ngIf="tarjetaC?.errors?.['pattern']" class="text-danger m-3">No cumple con los requisitos</small>
+        </small>
+      </div>
+
+      <div class="form-group mb-3">
+        <div class="input-group">
+          <label for="pwd" class="p-3">Contraseña</label>
+          <input type="pwd" formControlName="pwd" name="pwd" id="pwd" class="form-control" placeholder=""
+            aria-describedby="helpId">
+        </div>
+
+        <small *ngIf="pwd?.invalid" id="pwdS" class="text-muted">
+          <small *ngIf="pwd?.errors?.['required']" class="text-danger m-3">Contraseña requerida</small>
+          <small *ngIf="pwd?.errors?.['pattern']" class="text-danger m-3">No cumple con los requisitos</small>
+        </small>
+      </div>
+
+    </form>
+  </div>
+</div>
