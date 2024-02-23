@@ -5,15 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FNotasComponent } from './f-notas/f-notas.component';
-import {FormControl, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatTableModule} from '@angular/material/table';
+import {
+  FormControl,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+
 @NgModule({
-  declarations: [
-    AppComponent,
-    FNotasComponent
-  ],
+  declarations: [AppComponent, FNotasComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -22,9 +26,10 @@ import {MatTableModule} from '@angular/material/table';
     ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,
-    MatTableModule
+    MatTableModule,
+    MatButtonModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
