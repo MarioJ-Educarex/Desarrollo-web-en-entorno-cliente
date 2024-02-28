@@ -24,6 +24,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -46,6 +48,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     MatNativeDateModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
 
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }],
