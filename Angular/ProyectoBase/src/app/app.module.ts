@@ -25,10 +25,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { RouterModule } from '@angular/router';
+import { FormularioComponent } from './formulario/formulario.component';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, FormularioComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
