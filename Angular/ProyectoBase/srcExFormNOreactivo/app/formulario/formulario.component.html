@@ -1,0 +1,38 @@
+<mat-divider></mat-divider>
+<form class="example-form" [formGroup]="miformulario">
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td><mat-form-field class="example-full-width">
+          <mat-label>Nombre cliente</mat-label>
+          <input matInput formControlName="nombre" name="nombre" required>
+        </mat-form-field></td>
+      <td><mat-form-field>
+          <mat-label>Paradores</mat-label>
+          <mat-select formControlName="paradors" name="paradors" [formControl]="selected" [errorStateMatcher]="matcher">
+            <mat-option *ngFor="let parador of paradores" [value]="parador.nombre">{{ parador.nombre }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+      <td><mat-form-field>
+          <mat-label>Fecha de entrada</mat-label>
+          <input matInput formControlName="fechaEn" name="fechaEn" [matDatepicker]="picker1">
+          <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1 [calendarHeaderComponent]="exampleHeader"></mat-datepicker>
+        </mat-form-field>
+      </td>
+      <td><mat-form-field>
+          <mat-label>Fecha de salida</mat-label>
+          <input matInput formControlName="fechaSal" name="fechaSal" [matDatepicker]="picker2">
+          <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2 [calendarHeaderComponent]="exampleHeader"></mat-datepicker>
+        </mat-form-field>
+      </td>
+      <td>
+        <button type="submit" (click)="EnviarDatos()" mat-raised-button color="accent">Reservar</button>
+      </td>
+      <td>
+        <button type="reset" mat-raised-button color="warn">Resetear</button>
+      </td>
+    </tr>
+  </table>
+</form>
