@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Parador } from '../parador';
 import { ServicioHotelesService } from '../servicio-hoteles.service';
 import {
+  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -39,54 +40,69 @@ export class FormularioComponent implements OnInit {
     });
 
     this.miformulario = this.fb.group({
-      // nombre: [''],
+      nombre: ['', [Validators.required]],
       paradors: ['', [Validators.required]],
-      fechaEn: [''],
-      fechaSal: [''],
+      fechaEn: ['', [Validators.required]],
+      fechaSal: ['', [Validators.required]],
     });
+
+    // this.miformulario = this.fb.group({
+    //   nombre: ['', Validators.required],
+    //   paradors: ['', Validators.required],
+    //   fechaEn: ['', [Validators.required, this.validarFechaHoy(this.miformulario)]],
+    //   fechaSal: ['', [Validators.required, this.validarFechas(this.miformulario)]],
+    // });
   }
 
-  validarFecha() {
-    const fechaEn = new Date(this.miformulario.get('fechaEn')?.value);
-    const fechaSal = new Date(this.miformulario.get('fechaSal')?.value);
+  // fechaMatchValidator(fr: FormGroup) {
+  //   const fechaEN = this.miformulario.get('fechaEn')!.value;
+  //   const fechaSal = this.miformulario.get('fechaSal')!.value;
+
+  //   if (fechaEN && fechaSal) {
+  //     if (fechaSal <= fechaEN) {
+  //       fr.get('fechaSal')?.setErrors({ fechaInvalida: true });
+  //     } else {
+  //       fr.get('fechaSal')?.setErrors(null);
+  //     }
+  //   }
+  // }
+
+  validarFechaHoy(fr: FormGroup) {
+    const fechaEN = fr.get('fechaEn')!.value;
+    const fechaSal = fr.get('fechaSal')!.value;
     const hoy = new Date();
-
-    if (fechaEn === null || fechaSal === null) {
-      alert('Error en las fechas');
+    if (fechaEN <= hoy) {
+      const fechaValidaHoy = true;
     }
-    if (fechaEn <= hoy) {
-      alert('La fecha de entrada debe ser posterior a la fecha de hoy');
-    }
+  }
 
-    if (fechaSal <= fechaEn) {
-      alert('La fecha de salida debe ser posterior a la fecha de entrada');
+  validarFechas(fr: FormGroup) {
+    const fechaEN = new Date(fr.get('fechaEN')!.value);
+    const fechaSal = new Date(fr.get('fechaSal')!.value);
+
+    if (fechaSal <= fechaEN) {
+      const fechasValidasSal = true;
     }
   }
 
   EnviarDatos() {
-    const fechaEn = this.miformulario.get('fechaEn')?.value;
-    const fechaSal = this.miformulario.get('fechaSal')?.value;
-    const hoy = new Date();
-
-    if (
-      this.miformulario.get('nombre')?.value === '' ||
-      this.miformulario.get('paradors')?.value === ''
-    ) {
-      alert('Falta nombre o parador');
-    } else if (fechaEn === '' || fechaSal === '') {
-      alert('Error en las fechas');
-    } else if (fechaEn <= hoy) {
-      alert('La fecha de entrada debe ser posterior a la fecha de hoy');
-    } else if (fechaSal <= fechaEn) {
-      alert('La fecha de salida debe ser posterior a la fecha de entrada');
+    if (this.miformulario.valid) {
+      console.log(this.miformulario.value);
+      alert('OK');
+    } else {
+      alert('Rellene los campos correctamente');
     }
+  }
 
-    // this.validarFecha();
-    // if (this.miformulario.valid) {
-    //   console.log(this.miformulario.value);
-    //   alert('OK');
-    // } else {
-    //   alert('Falta nombre o parador');
-    // }
+  fechaEntradaPosteriorAHoy(control: AbstractControl) {
+    const fechaEn = new Date(control.value);
+    const hoy = new Date();
+    return fechaEn > hoy ? null : { fechaInvalida: true };
+  }
+
+  fechaSalidaPosteriorAEntrada(control: AbstractControl) {
+    const fechaSal = new Date(control.value);
+    const fechaEn = new Date(this.miformulario.get('fechaEn')!.value);
+    return fechaSal > fechaEn ? null : { fechaInvalida2: true };
   }
 }

@@ -5,26 +5,37 @@
       <td><mat-form-field class="example-full-width">
           <mat-label>Nombre cliente</mat-label>
           <input matInput formControlName="nombre" name="nombre" required>
+          <mat-error *ngIf="miformulario.get('nombre')?.hasError('required')">Nombre obligatorio</mat-error>
         </mat-form-field></td>
+
       <td><mat-form-field>
           <mat-label>Paradores</mat-label>
           <mat-select formControlName="paradors" name="paradors" [formControl]="selected" [errorStateMatcher]="matcher">
             <mat-option *ngFor="let parador of paradores" [value]="parador.nombre">{{ parador.nombre }}</mat-option>
           </mat-select>
+          <mat-error *ngIf="miformulario.get('paradors')?.hasError('required')">Parador obligatorio</mat-error>
         </mat-form-field>
+
       </td>
       <td><mat-form-field>
           <mat-label>Fecha de entrada</mat-label>
-          <input matInput formControlName="fechaEn" name="fechaEn" [matDatepicker]="picker1">
+          <input matInput formControlName="fechaEn" name="fechaEn" required [matDatepicker]="picker1">
           <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1 [calendarHeaderComponent]="exampleHeader"></mat-datepicker>
+          <mat-error *ngIf="miformulario.get('fechaEn')?.hasError('required')">Fecha obligatoria</mat-error>
+          <mat-error *ngIf="miformulario.get('fechaEn')?.hasError('fechaValidaHoy')">La fecha de entrada debe ser
+            posterior a la fecha de hoy</mat-error>
         </mat-form-field>
       </td>
       <td><mat-form-field>
           <mat-label>Fecha de salida</mat-label>
-          <input matInput formControlName="fechaSal" name="fechaSal" [matDatepicker]="picker2">
+          <input matInput formControlName="fechaSal" name="fechaSal" required [matDatepicker]="picker2">
           <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2 [calendarHeaderComponent]="exampleHeader"></mat-datepicker>
+          <mat-error *ngIf="miformulario.get('fechaSal')?.hasError('required')">Fecha obligatoria</mat-error>
+          <mat-error *ngIf="miformulario.get('fechaSal')?.hasError('fechasValidasSal')">La fecha de salida debe ser
+            posterior a la fecha de entrada</mat-error>
+
         </mat-form-field>
       </td>
       <td>
