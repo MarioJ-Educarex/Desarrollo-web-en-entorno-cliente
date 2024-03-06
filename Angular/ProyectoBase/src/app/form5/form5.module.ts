@@ -8,7 +8,7 @@ import { FooterComponent } from './form5/footer/footer.component';
 import { HeaderComponent } from './form5/header/header.component';
 
 @NgModule({
-  declarations: [BodyComponent, FooterComponent, HeaderComponent],
+  declarations: [],
   imports: [CommonModule],
 })
 export class Form5Module {}

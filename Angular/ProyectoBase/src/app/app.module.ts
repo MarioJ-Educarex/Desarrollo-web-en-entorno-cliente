@@ -32,9 +32,12 @@ import { Form2Component } from './form2/form2/form2.component';
 import { Form3Component } from './form3/form3/form3.component';
 import { Form4Component } from './form4/form4/form4.component';
 import { Form5Component } from './form5/form5/form5.component';
+import { BodyComponent } from './form5/form5/body/body.component';
+import { FooterComponent } from './form5/form5/footer/footer.component';
+import { HeaderComponent } from './form5/form5/header/header.component';
 
 @NgModule({
-  declarations: [AppComponent, MenuComponent, Form1Component, Form2Component, Form3Component, Form4Component, Form5Component],
+  declarations: [AppComponent, MenuComponent, Form1Component, Form2Component, Form3Component, Form4Component, Form5Component, BodyComponent, FooterComponent, HeaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
