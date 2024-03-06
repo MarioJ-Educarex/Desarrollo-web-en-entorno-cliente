@@ -1,23 +1,13 @@
 <div class="container">
   <div class="row d-flex justify-content-center">
     <div class="col-auto">
-      <a class="nav-link" class="btn btn-info btn-md m-2" routerLink="hortaliza"
-        >Hortaliza</a
-      >
-      <a class="nav-link" class="btn btn-primary btn-md m-2" routerLink="frutal"
-        >Frutal</a
-      >
-      <a
-        class="nav-link"
-        class="btn btn-light btn-md m-2"
-        routerLink="aromaticas"
-        >Aromaticas</a
-      >
-    </div>
-  </div>
-  <div class="row d-flex justify-content-center">
-    <div class="col-auto">
-      <router-outlet></router-outlet>
-    </div>
+      <a class="nav-link" class="btn btn-info btn-md m-2" routerLink="hortalizas">Hortaliza</a>
+      <a class="nav-link" class="btn btn-danger btn-md m-2" routerLink="frutal">Frutal</a>
+      <a class="nav-link" class="btn btn-success btn-md m-2" routerLink="hongos">Hongos</a>
   </div>
 </div>
+<div class="row">
+  <router-outlet></router-outlet>
+</div>
+</div>
+

@@ -2,16 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FrutalRoutingModule } from './frutal-routing.module';
-import { MelocotonComponent } from './melocoton/melocoton.component';
-import { PapayaComponent } from './papaya/papaya.component';
-import { KiwiComponent } from './kiwi/kiwi.component';
+import { NectarinaComponent } from './nectarina/nectarina.component';
+import { ManzanaComponent } from './manzana/manzana.component';
+import { AlbaricoqueComponent } from './albaricoque/albaricoque.component';
+import { ParaguayasComponent } from './paraguayas/paraguayas.component';
 
 
 @NgModule({
   declarations: [
-    MelocotonComponent,
-    PapayaComponent,
-    KiwiComponent
+    NectarinaComponent,
+    ManzanaComponent,
+    AlbaricoqueComponent,
+    ParaguayasComponent
   ],
   imports: [
     CommonModule,

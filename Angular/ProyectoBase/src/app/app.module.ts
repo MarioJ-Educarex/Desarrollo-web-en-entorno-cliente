@@ -3,18 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HortalizaComponent } from './hortaliza/hortaliza.component';
-import { AromaticasComponent } from './aromaticas/aromaticas.component';
-import { HuertoComponent } from './huerto/huerto.component';
+import { HortalizasComponent } from './hortalizas/hortalizas.component';
 import { FrutalComponent } from './frutal/frutal.component';
+import { HongosComponent } from './hongos/hongos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HortalizaComponent,
-    AromaticasComponent,
-    HuertoComponent,
-    FrutalComponent
+    HortalizasComponent,
+    FrutalComponent,
+    HongosComponent
   ],
   imports: [
     BrowserModule,

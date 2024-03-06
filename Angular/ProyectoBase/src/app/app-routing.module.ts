@@ -1,27 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FrutalModule } from './frutal/frutal.module';
-import { HortalizaComponent } from './hortaliza/hortaliza.component';
 import { FrutalComponent } from './frutal/frutal.component';
-import { AromaticasComponent } from './aromaticas/aromaticas.component';
+import { HongosComponent } from './hongos/hongos.component';
+import { HortalizasComponent } from './hortalizas/hortalizas.component';
 
 const routes: Routes = [
   {
-    path: 'hortaliza',
-    component: HortalizaComponent,
-    loadChildren: () => import('./hortaliza/hortaliza.module').then(m => m.HortalizaModule)
+    path: 'hortalizas',
+    component: HortalizasComponent,
+    loadChildren: () => import('./hortalizas/hortalizas.module').then(m => m.HortalizasModule)
   },
   {
     path: 'frutal',
-    component: FrutalComponent,
+    component: FrutalComponent ,
     loadChildren: () => import('./frutal/frutal.module').then(m => m.FrutalModule)
   },
   {
-    path: 'aromaticas',
-    component: AromaticasComponent,
-    loadChildren: () => import('./aromaticas/aromaticas.module').then(m => m.AromaticasModule)
+    path: 'hongos',
+    component: HongosComponent,
+    loadChildren: () => import('./hongos/hongos.module').then(m => m.HongosModule)
   },
-
 ];
 
 @NgModule({
