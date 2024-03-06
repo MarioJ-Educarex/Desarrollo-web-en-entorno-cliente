@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Huerto</h1>
+  <label for="">Mensaje de huerto hacia hortaliza</label>
+  <input type="text" [(ngModel)]="mensajeHortaliza">
+  <div> Hortaliza dice a huerto:</div>
+  <div>Peticiones de Hortaliza (semilleros) a huerto 0</div>
+  <app-hortaliza [mensajeParaHortaliza]="mensajeHortaliza"></app-hortaliza>
+
+  <label for="">Mensaje de huerto hacia frutal</label>
+  <input type="text" [(ngModel)]="mensajeFrutal">
+  <div> Frutal dice a huerto:</div>
+  <div>Peticiones de Frutal (plantones) a huerto 0</div>
+  <app-frutal [mensajeParaFrutal]="mensajeFrutal"></app-frutal>
+
+</div>
