@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-hortaliza',
@@ -7,4 +7,22 @@ import { Component, Input } from '@angular/core';
 })
 export class HortalizaComponent {
   @Input() mensajeParaHortaliza: string = '';
+  @Output()
+  mensajeDeSalidaHortaliza = new EventEmitter();
+
+  mensajeParaHuerto: string = '';
+  @Output()
+  nsemilleros = new EventEmitter();
+  numerosemilleros: number = 0;
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  enviaMensaje() {
+    this.mensajeDeSalidaHortaliza.emit({ mensaje: this.mensajeParaHuerto });
+  }
+  enviarSemilleros() {
+    this.numerosemilleros = Math.round(Math.random() * 100);
+    this.nsemilleros.emit({ semilleros: this.numerosemilleros });
+  }
 }

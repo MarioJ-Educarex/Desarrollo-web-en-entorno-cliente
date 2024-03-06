@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-frutal',
@@ -7,4 +7,24 @@ import { Component, Input } from '@angular/core';
 })
 export class FrutalComponent {
   @Input() mensajeParaFrutal: string = '';
+
+  @Output() mensajeDeSalidaFrutal = new EventEmitter();
+
+  @Output()
+  nplantones = new EventEmitter();
+  numerodePlantones: number = 0;
+
+  mensajeParaHuerto: string = '';
+
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  enviaMensaje() {
+    this.mensajeDeSalidaFrutal.emit({ mensaje: this.mensajeParaHuerto });
+  }
+  enviarPlantones() {
+    this.numerodePlantones = Math.round(Math.random() * 1000);
+    this.nplantones.emit({ plantones: this.numerodePlantones });
+  }
 }
