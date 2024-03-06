@@ -1,46 +1,31 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Form1Component } from './form1/form1/form1.component';
-import { Form2Component } from './form2/form2/form2.component';
-import { Form3Component } from './form3/form3/form3.component';
-import { Form4Component } from './form4/form4/form4.component';
-import { Form5Component } from './form5/form5/form5.component';
+import { FrutalModule } from './frutal/frutal.module';
+import { HortalizaComponent } from './hortaliza/hortaliza.component';
+import { FrutalComponent } from './frutal/frutal.component';
+import { AromaticasComponent } from './aromaticas/aromaticas.component';
 
 const routes: Routes = [
   {
-    path: 'form1', // Ruta para el formulario 1
-    component: Form1Component,
-    loadChildren: () =>
-      import('./form1/form1.module').then((m) => m.Form1Module),
+    path: 'hortaliza',
+    component: HortalizaComponent,
+    loadChildren: () => import('./hortaliza/hortaliza.module').then(m => m.HortalizaModule)
   },
   {
-    path: 'form2', // Ruta para el formulario 2
-    component: Form2Component,
-    loadChildren: () =>
-      import('./form2/form2.module').then((m) => m.Form2Module),
+    path: 'frutal',
+    component: FrutalComponent,
+    loadChildren: () => import('./frutal/frutal.module').then(m => m.FrutalModule)
   },
   {
-    path: 'form3', // Ruta para el formulario 3
-    component: Form3Component,
-    loadChildren: () =>
-      import('./form3/form3.module').then((m) => m.Form3Module),
+    path: 'aromaticas',
+    component: AromaticasComponent,
+    loadChildren: () => import('./aromaticas/aromaticas.module').then(m => m.AromaticasModule)
   },
-  {
-    path: 'form4', // Ruta para el formulario 4
-    component: Form4Component,
-    loadChildren: () =>
-      import('./form4/form4.module').then((m) => m.Form4Module),
-  },
-  {
-    path: 'form5', // Ruta para el formulario 5
-    component: Form5Component,
-    loadChildren: () =>
-      import('./form5/form5.module').then((m) => m.Form5Module),
-  },
+
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
