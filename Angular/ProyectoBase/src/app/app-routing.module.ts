@@ -5,6 +5,8 @@ import { Form2Component } from './form2/form2/form2.component';
 import { Form3Component } from './form3/form3/form3.component';
 import { Form4Component } from './form4/form4/form4.component';
 import { Form5Component } from './form5/form5/form5.component';
+import { Form7Component } from './form7/form7/form7.component';
+import { Form6Component } from './form6/form6/form6.component';
 
 const routes: Routes = [
   {
@@ -36,6 +38,19 @@ const routes: Routes = [
     component: Form5Component,
     loadChildren: () =>
       import('./form5/form5.module').then((m) => m.Form5Module),
+  },
+
+  {
+    path: 'form6', // Ruta para el formulario 6
+    component: Form6Component,
+    loadChildren: () =>
+      import('./form6/form6.module').then((m) => m.Form6Module),
+  },
+  {
+    path: 'form7',
+    component: Form7Component,
+    loadChildren: () =>
+      import('./form7/form7.module').then((m) => m.Form7Module),
   },
 ];
 
