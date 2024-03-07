@@ -1,0 +1,14 @@
+<div class="mt-1 mb-1">
+  <h1>Hortaliza</h1>
+
+  <div class="input-group mb-3">
+    <input type="text" class="form-sm-control" placeholder="" aria-label="Recipient's username"
+      [(ngModel)]="mensajeParaHuerto" (keyup)="enviaMensaje()" aria-describedby="button-addon2">
+    <div class="input-group-append">
+      <button (click)="enviarSemilleros()" class="btn btn-secondary" type="button" id="button-addon2">Mandar
+        Semilleros</button>
+    </div>
+  </div>
+  <span>El huerto dice: {{mensajeParaHortaliza}}</span>
+
+</div>
