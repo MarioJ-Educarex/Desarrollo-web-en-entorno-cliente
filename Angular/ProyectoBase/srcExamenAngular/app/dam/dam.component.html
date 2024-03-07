@@ -1,0 +1,51 @@
+<!-- <div class="container">
+  <div class="row justify-content-content-center mt-5 mb-5">
+    <img src="../dam.jpg" alt="a" class="col-6" />
+  </div>
+
+  <div class="row">
+    <div class="col justify-content-content-center nav gap-3">
+      <a routerLink="bd" class="btn btn-warning">BD</a>
+      <a routerLink="di" class="btn btn-success">DI</a>
+      <a routerLink="pmms" class="btn btn-danger">PMMS</a>
+      <a routerLink="psp" class="btn btn-primary">PSP</a>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <router-outlet></router-outlet>
+</div>
+ -->
+
+<div class="container">
+  <div class="d-flex justify-content-center">
+    <img
+      style="margin: 40px"
+      width="500px"
+      src="https://titulae.es/wp-content/uploads/2017/05/FP_T%C3%A9cnico_Superior_en_Desarrollo_de_Aplic_Multiplat-1-300x200.jpg"
+      alt=""
+    />
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-auto">
+      <a class="nav-link" class="btn btn-warning btn-md m-2" routerLink="bd"
+        >BD</a
+      >
+      <a class="nav-link" class="btn btn-success btn-md m-2" routerLink="di"
+        >DI</a
+      >
+      <a class="nav-link" class="btn btn-danger btn-md m-2" routerLink="pmms"
+        >PMMS</a
+      >
+      <a class="nav-link" class="btn btn-info btn-md m-2" routerLink="psp"
+        >PSP</a
+      >
+    </div>
+  </div>
+  <div class="row d-flex">
+    <div class="col-auto">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
