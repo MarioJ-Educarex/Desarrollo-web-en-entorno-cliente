@@ -1,0 +1,22 @@
+<h1 style="text-align: center;">PUEBLOS</h1>
+
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#ID</th>
+      <th scope="col">Imagen</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Info</th>
+      <th scope="col">Activo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr  *ngFor="let x of pueblitodos">
+      <th scope="row">{{ x.id }}</th>
+      <td><img [src]="x.imagen" [width]="150" /></td>
+      <td>{{ x.texto }}</td>
+      <td>{{ x.subtexto }}</td>
+      <td>{{ x.activo}}</td>
+    </tr>
+  </tbody>
+</table>
