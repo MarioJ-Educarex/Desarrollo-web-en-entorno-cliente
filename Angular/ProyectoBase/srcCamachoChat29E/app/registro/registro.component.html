@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+
+        <div class="form-group">
+          <label for="nombre">Nombre </label>
+          <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre del usuario" aria-describedby="helpId" [(ngModel)]="usuario.nombre">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email </label>
+          <input type="email" name="email" id="email" class="form-control" placeholder="Correo del usuario" aria-describedby="helpId" [(ngModel)]="usuario.email">
+        </div>
+        <div class="form-group">
+          <label for="password">Password </label>
+          <input type="password" name="password" id="password" class="form-control" placeholder="password usuario" aria-describedby="helpId" [(ngModel)]="usuario.pwd">
+        </div>
+           <button class="btn btn-info m-2" (click)="Registrar()" >Registrar</button>
+
+    </div>
+  </div>
+</div>

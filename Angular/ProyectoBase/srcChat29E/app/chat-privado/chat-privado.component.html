@@ -1,0 +1,124 @@
+<mat-divider></mat-divider>
+<mat-label>Mensajería Privada</mat-label>
+
+<button mat-raised-button color="primary" (click)="cerrarSesion()">Cerrar Privado</button>
+
+<mat-label>Usuario : {{miParametro}}</mat-label>
+
+<mat-form-field>
+  <mat-label>Buscar en el chat</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input>
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Nombre del destinatario</mat-label>
+      <input matInput  [(ngModel)]="msjchat.destinatario" name="destinatario" >
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Escribe mensaje y pulsa enter</mat-label>
+      <input matInput placeholder="Enter al finalizar" [(ngModel)]="msjchat.mensaje" name="mensaje"
+        (keydown.enter)="mandar()">
+    </mat-form-field>
+  </form>
+
+  <mat-label>Mensajes recibidos por {{miParametro}}</mat-label>
+
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let mensajeR"> {{mensajeR.id}} </td>
+    </ng-container>
+
+    <!-- nombre Column -->
+    <ng-container matColumnDef="fecha">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+      <td mat-cell *matCellDef="let mensajeR"> {{mensajeR.fecha}} </td>
+    </ng-container>
+
+    <!-- direccion Column -->
+    <ng-container matColumnDef="usuario">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </th>
+      <td mat-cell *matCellDef="let mensajeR"> {{mensajeR.usuario}} </td>
+    </ng-container>
+
+    <!-- telefono Column -->
+    <ng-container matColumnDef="mensaje">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Mensaje </th>
+      <td mat-cell *matCellDef="let mensajeR"> {{mensajeR.mensaje}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="destinatario">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Destinatario </th>
+      <td mat-cell *matCellDef="let mensajeR"> {{mensajeR.destinatario}} </td>
+    </ng-container>
+
+    <!-- ELIMINAR Column -->
+
+    <!-- MODIFICAR Column -->
+
+
+    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+    <tr mat-row *matRowDef="let mensaje; columns: columnas;"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No se encontraron empleados "{{input.value}}"</td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Selecciona página de empleados"></mat-paginator>
+</div>
+
+
+<div class="mat-elevation-z8">
+  <mat-label>Mensajes enviados por {{miParametro}}</mat-label>
+
+  <table mat-table [dataSource]="dataSource2" matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let mensajeE"> {{mensajeE.id}} </td>
+    </ng-container>
+
+    <!-- nombre Column -->
+    <ng-container matColumnDef="fecha">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+      <td mat-cell *matCellDef="let mensajeE"> {{mensajeE.fecha}} </td>
+    </ng-container>
+
+    <!-- direccion Column -->
+    <ng-container matColumnDef="usuario">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </th>
+      <td mat-cell *matCellDef="let mensajeE"> {{mensajeE.usuario}} </td>
+    </ng-container>
+
+    <!-- telefono Column -->
+    <ng-container matColumnDef="mensaje">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Mensaje </th>
+      <td mat-cell *matCellDef="let mensajeE"> {{mensajeE.mensaje}} </td>
+    </ng-container>
+
+    <!-- telefono Column -->
+    <ng-container matColumnDef="destinatario">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Destinatario </th>
+      <td mat-cell *matCellDef="let mensajeE"> {{mensajeE.destinatario}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="columnas2"></tr>
+    <tr mat-row *matRowDef="let mensajeE; columns: columnas2;"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No se encontraron empleados "{{input.value}}"</td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Selecciona página de empleados"></mat-paginator>
+</div>
