@@ -1,99 +1,81 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-12">
-      <h1 class="text-center">Formulario Concesionario</h1>
-    </div>
-
-    <div class="col-md-6 offset-md-2">
-      <form class="example-form" [formGroup]="miform">
-        <div class="example-container">
-          <mat-form-field>
-            <mat-label>Matrícula</mat-label>
-            <input matInput placeholder="0123ABC" formControlName="matricula" required>
-            <!-- @if (email.invalid) {
-          <mat-error>{{getErrorMessage()}}</mat-error>
-          } -->
-          </mat-form-field>
-        </div>
-
-        <mat-radio-group aria-label="Motor" formControlName="motor">
-          <label class="example-margin">Motor:</label>
-          <mat-radio-button value="diesel">Diesel</mat-radio-button>
-          <mat-radio-button value="hibrido">Híbrido</mat-radio-button>
-          <mat-radio-button value="eléctrico">100% Eléctrico</mat-radio-button>
-        </mat-radio-group>
-
-
-        <section class="example-section">
-          <label class="example-margin">Accesorios:</label>
-          <mat-radio-group>
-            <mat-radio-button class="example-margin" value="gps">GPS</mat-radio-button>
-            <mat-radio-button class="example-margin" value="climatizador">Climatizador</mat-radio-button>
-            <mat-radio-button class="example-margin" value="cargadorElectrico">Cargador Eléctrico</mat-radio-button>
-          </mat-radio-group>
-        </section>
-
-        <mat-form-field>
-          <mat-label>Neumáticos</mat-label>
-          <mat-select formControlName="neumaticos">
-            <mat-option value="michelin">Michelín</mat-option>
-            <mat-option value="Firestone">Firestone</mat-option>
-            <mat-option value="pirelli">Pirelli</mat-option>
-            <mat-option value="goodyear">Goodyear</mat-option>
+<mat-divider></mat-divider>
+<form class="example-form" [formGroup]="miformulario">
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td><mat-form-field>
+          <mat-label>Id</mat-label>
+          <mat-select required formControlName="id">
+            <!-- <mat-option *ngFor="let empleado of empleados" value="{{empleado.id}}">{{ empleado.id }}</mat-option> -->
+            <mat-option *ngFor="let numero of numeros" value="{{numero}}">{{ numero }}</mat-option>
           </mat-select>
+          <mat-error *ngIf="miformulario.get('id')?.hasError('required')">Id obligatorio</mat-error>
         </mat-form-field>
+      </td>
 
-        <mat-divider></mat-divider>
-        <button mat-raised-button color="primary" (click)="enviar()">Envíar</button>
+      <td><mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <mat-select formControlName="nombre" name="nombre">
+            <mat-option *ngFor="let empleado of empleados" value="{{empleado.nombre}}">{{ empleado.nombre
+              }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="miformulario.get('nombre')?.hasError('required')">Nombre obligatorio</mat-error>
+        </mat-form-field>
+      </td>
 
-      </form>
-    </div>
+      <td><mat-form-field>
+          <mat-label>Dirección</mat-label>
+          <mat-select formControlName="direccion" name="direccion">
+            <mat-option *ngFor="let empleado of empleados" value="{{empleado.direccion}}">{{ empleado.direccion
+              }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="miformulario.get('direccion')?.hasError('required')">Dirección obligatoria</mat-error>
+        </mat-form-field>
+      </td>
 
-    <div class="col-md-12">
-      <table mat-table [dataSource]="dataSource" class="mt-3 mat-elevation-z8">
+      <td><mat-form-field>
+          <mat-label>Cargo</mat-label>
+          <mat-select formControlName="cargo" name="cargo">
+            <mat-option *ngFor="let empleado of empleados" value="{{empleado.cargo}}">{{ empleado.cargo }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="miformulario.get('cargo')?.hasError('required')">Cargo obligatorio</mat-error>
+        </mat-form-field>
+      </td>
 
-        <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
-
-        <!-- Position Column -->
-        <ng-container matColumnDef="matricula">
-          <th mat-header-cell *matHeaderCellDef> Matricula </th>
-          <td mat-cell *matCellDef="let element"> {{element.matricula}} </td>
-        </ng-container>
-
-        <!-- Name Column -->
-        <ng-container matColumnDef="motor">
-          <th mat-header-cell *matHeaderCellDef> Motor </th>
-          <td mat-cell *matCellDef="let element"> {{element.motor}} </td>
-        </ng-container>
-
-        <!-- Weight Column -->
-        <ng-container matColumnDef="climatizador">
-          <th mat-header-cell *matHeaderCellDef> Climatizador </th>
-          <td mat-cell *matCellDef="let element"> {{element.climatizador}} </td>
-        </ng-container>
-
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="cargadorElectrico">
-          <th mat-header-cell *matHeaderCellDef> Cargador Electrico </th>
-          <td mat-cell *matCellDef="let element"> {{element.cargadorElectrico}} </td>
-        </ng-container>
-
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="gps">
-          <th mat-header-cell *matHeaderCellDef> GPS </th>
-          <td mat-cell *matCellDef="let element"> {{element.gps}} </td>
-        </ng-container>
-
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="neumaticos">
-          <th mat-header-cell *matHeaderCellDef> Neumatico </th>
-          <td mat-cell *matCellDef="let element"> {{element.neumatico}} </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
-        <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
-      </table>
-    </div>
-  </div>
-</div>
+      <td><mat-form-field>
+          <mat-label>Edad</mat-label>
+          <mat-select formControlName="edad" name="edad">
+            <!-- <mat-option *ngFor="let empleado of empleados" value="{{empleado.edad">{{ empleado.edad }}</mat-option> -->
+            <mat-option *ngFor="let edad of edades" value="{{edad}}">{{ edad }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="miformulario.get('edad')?.hasError('required')">Edad obligatoria</mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td><mat-form-field>
+          <mat-label>Imagen</mat-label>
+          <mat-select formControlName="imagen" name="imagen">
+            <mat-option *ngFor="let empleado of empleados" value="{{empleado.imagen}}" (change)="mostrarImagen($event)">
+              <img src="{{ empleado.imagen }}" alt=""></mat-option>
+          </mat-select>
+          <mat-error *ngIf="miformulario.get('imagen')?.hasError('required')">Imagen obligatoria</mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+    <mat-divider></mat-divider>
+    <tr>
+      <div *ngIf="miformulario.get('imagen')?.value">
+        <img [src]="miformulario.get('imagen')?.value" alt="Imagen seleccionada">
+      </div>
+    </tr>
+    <tr>
+      <td>
+        <button type="submit" (click)="EnviarDatos()" mat-raised-button color="accent"
+          *ngIf="miformulario.valid">Reservar</button>
+      </td>
+      <td>
+        <button type="reset" mat-raised-button color="warn">Resetear</button>
+      </td>
+    </tr>
+  </table>
+</form>

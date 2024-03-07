@@ -1,10 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Coche } from 'srcFormReacCoches/app/coche';
 import { ServicioAutoService } from 'srcFormReacCoches/app/servicio-auto.service';
+import { Empleado } from '../empleado';
+import { ServicioEmpleadoService } from '../servicio-empleado.service';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 @Component({
   selector: 'app-form1',
@@ -12,48 +20,52 @@ import { ServicioAutoService } from 'srcFormReacCoches/app/servicio-auto.service
   styleUrls: ['./form1.component.css'],
 })
 export class Form1Component implements OnInit {
-  dataSource = new MatTableDataSource<Coche>();
+mostrarImagen($event: Event) {
+throw new Error('Method not implemented.');
+}
+  numeros: number[] = Array.from({ length: 300 }, (_, i) => i + 1);
+  edades: number[] = Array.from({ length: 48 }, (_, i) => i + 18);
 
-  columnas: string[] = [
-    'matricula',
-    'motor',
-    'climatizador',
-    'cargadorElectrico',
-    'gps',
-    'neumaticos',
-  ];
-  miform!: FormGroup;
+  miformulario!: FormGroup;
 
-  constructor(private servicio: ServicioAutoService, private fb: FormBuilder) {
-    this.miform = this.fb.group({
-      matricula: [
-        '',
-        [Validators.required, Validators.pattern('^[0-9]{4}[A-Z]{3}$')],
-      ],
-      motor: ['', [Validators.required]],
-      climatizador: ['false', []],
-      cargadorElectrico: ['false', []],
-      gps: ['false', []],
-      neumaticos: ['', [Validators.required]],
+  empleados: Empleado[] = [];
+
+
+  constructor(
+    private fb: FormBuilder,
+    private empleadoService: ServicioEmpleadoService
+  ) {
+
+    this.miformulario = this.fb.group({
+      id: ['', [Validators.required]],
+      nombre: ['', [Validators.required]],
+      direccion: ['', [Validators.required]],
+      cargo: ['', [Validators.required]],
+      edad: ['', [Validators.required]],
+      imagen: ['', [Validators.required]],
     });
   }
 
-  ngOnInit(): void {
-    this.servicio.obtenerCoches().subscribe((coche: Coche[]) => {
-      this.dataSource.data = coche;
+  ngOnInit() {
+    this.empleadoService.getEmpleados().subscribe((empleados) => {
+      this.empleados = empleados;
     });
   }
 
-  enviar() {
-    if (this.miform.valid) {
-      alert('Enviado');
-      this.servicio.insertarCoche(this.miform.value).subscribe(() => {
-        this.dataSource.data.push(this.miform.value);
-        this.dataSource._updateChangeSubscription();
-        this.miform.reset();
-      });
-    } else {
-      alert('No enviado');
+  EnviarDatos() {
+    if (this.miformulario.valid) {
+      console.log(this.miformulario.value);
+
+      const nuevoEmpleado = this.miformulario.value;
+      this.empleadoService
+        .insertarEmpleado(nuevoEmpleado)
+        .subscribe((response) => {
+          console.log('Empleado insertado con éxito');
+
+          if (response.includes('Duplicate')) {
+            alert('El id ya existe');
+          }
+        });
     }
   }
 }
