@@ -1,11 +1,6 @@
-<h3>Horas</h3>
-<p>{{horas}}</p>
-<h3>Minutos</h3>
-<p>{{minutos}}</p>
-<h3>Segundos</h3>
-<p>{{segundos}}</p>
-<h3>Decimas</h3>
-<p>{{decimas}}</p>
-
-<app-cronometro [inicio]=0 (actualizarS)="actualizarS($event)" (actualizarM)="actualizarM($event)"
-  (actualizarD)="actualizarD($event)" (actualizarH)="actualizarH($event)"></app-cronometro>
+<app-hijo (devolverNum2)="recibir2($event)">
+</app-hijo>
+<br>
+<span>https://randomuser.me/api/portraits/men/{{Num}}</span>
+<br>
+<img *ngIf="Num!==0" src={{cadena2}}>

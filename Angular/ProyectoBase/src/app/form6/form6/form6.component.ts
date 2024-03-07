@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./form6.component.css']
 })
 export class Form6Component {
-  title = 'temporizador';
+  title = 'Imagenes random';
 
 }

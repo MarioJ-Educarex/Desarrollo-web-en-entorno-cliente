@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
 
+  @Input() infocabecera: string = '';
+
+  @Output() clasePrincipal = new EventEmitter();
+  claseNueva: string = '';
+
+  enviarClase() {
+    this.clasePrincipal.emit({ordenHijo: this.claseNueva});
+  }
 }

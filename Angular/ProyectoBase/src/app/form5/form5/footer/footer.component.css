@@ -6,3 +6,30 @@ div{
   box-shadow: 0px 0px 5px 0px #000;
   height: 80px;
 }
+
+div{
+  background-color: #cceeb1;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px #000;
+}
+.clase1 {
+color: red;
+background-color: yellow;
+}
+
+.clase2 {
+color: white;
+background-color: black;
+}
+
+.clase3 {
+color: rgb(34, 124, 6);
+background-color: white;
+}
+
+.clase4 {
+color: rgb(253, 93, 253);
+background-color: blue;
+}

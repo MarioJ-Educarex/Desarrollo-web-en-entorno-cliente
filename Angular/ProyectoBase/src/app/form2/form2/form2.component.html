@@ -1,47 +1,69 @@
 <form [formGroup]="formulario" (ngSubmit)="enviarNotas()">
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field>
+          <mat-label>Numero CIF</mat-label>
+          <input matInput formControlName="cif">
+          <mat-error *ngIf="formulario.get('cif')?.hasError('required')">Campo obligatorio</mat-error>
+          <mat-error *ngIf="formulario.get('cif')?.hasError('pattern')">No cumple los requisitos</mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <mat-form-field>
+          <mat-label>Nombre y apellido</mat-label>
+          <input matInput formControlName="nombre">
+          <mat-error *ngIf="formulario.get('nombre')?.hasError('required')">Campo obligatorio</mat-error>
+          <mat-error *ngIf="formulario.get('nombre')?.hasError('minlength')">Nombre demasiado corto</mat-error>
+          <mat-error *ngIf="formulario.get('nombre')?.hasError('maxlength')">Nombre demasiado largo</mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field>
+          <mat-label>Nota 1</mat-label>
+          <input matInput formControlName="n1">
+          <mat-error *ngIf="formulario.get('n1')?.hasError('required')">Campo obligatorio</mat-error>
+          <mat-error *ngIf="formulario.get('n1')?.hasError('min')">No puede ser negativo</mat-error>
+          <mat-error *ngIf="formulario.get('n1')?.hasError('max')">No puede ser mayor que 10</mat-error>
+
+        </mat-form-field>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <mat-form-field>
+          <mat-label>Nota 2</mat-label>
+          <input matInput formControlName="n2">
+          <mat-error *ngIf="formulario.get('n2')?.hasError('required')">Campo obligatorio</mat-error>
+          <mat-error *ngIf="formulario.get('n2')?.hasError('min')">No puede ser negativo</mat-error>
+          <mat-error *ngIf="formulario.get('n2')?.hasError('max')">No puede ser mayor que 10</mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
 
 
-  <mat-form-field>
-    <mat-label>Numero CIF</mat-label>
-    <input matInput formControlName="cif">
-    <mat-error *ngIf="formulario.get('cif')?.hasError('required')">Campo obligatorio</mat-error>
-    <mat-error *ngIf="formulario.get('cif')?.hasError('pattern')">No cumple los requisitos</mat-error>
-  </mat-form-field>
+    <tr>
+      <td>
+        <mat-form-field>
+          <mat-label>Nota 3</mat-label>
+          <input matInput formControlName="n3">
+          <mat-error *ngIf="formulario.get('n3')?.hasError('required')">Campo obligatorio</mat-error>
+          <mat-error *ngIf="formulario.get('n3')?.hasError('min')">No puede ser negativo</mat-error>
+          <mat-error *ngIf="formulario.get('n3')?.hasError('max')">No puede ser mayor que 10</mat-error>
+        </mat-form-field>
+      </td>
+      <td>
+        <button mat-raised-button color="primary" (click)="enviarNotas()">Enviar</button>
+      </td>
+    </tr>
 
-  <mat-form-field>
-    <mat-label>Nombre y apellido</mat-label>
-    <input matInput formControlName="nombre">
-    <mat-error *ngIf="formulario.get('nombre')?.hasError('required')">Campo obligatorio</mat-error>
-    <mat-error *ngIf="formulario.get('nombre')?.hasError('minlength')">Nombre demasiado corto</mat-error>
-    <mat-error *ngIf="formulario.get('nombre')?.hasError('maxlength')">Nombre demasiado largo</mat-error>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Nota 1</mat-label>
-    <input matInput formControlName="n1">
-    <mat-error *ngIf="formulario.get('n1')?.hasError('required')">Campo obligatorio</mat-error>
-    <mat-error *ngIf="formulario.get('n1')?.hasError('min')">No puede ser negativo</mat-error>
-    <mat-error *ngIf="formulario.get('n1')?.hasError('max')">No puede ser mayor que 10</mat-error>
-
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Nota 2</mat-label>
-    <input matInput formControlName="n2">
-    <mat-error *ngIf="formulario.get('n2')?.hasError('required')">Campo obligatorio</mat-error>
-    <mat-error *ngIf="formulario.get('n2')?.hasError('min')">No puede ser negativo</mat-error>
-    <mat-error *ngIf="formulario.get('n2')?.hasError('max')">No puede ser mayor que 10</mat-error>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Nota 3</mat-label>
-    <input matInput formControlName="n3">
-    <mat-error *ngIf="formulario.get('n3')?.hasError('required')">Campo obligatorio</mat-error>
-    <mat-error *ngIf="formulario.get('n3')?.hasError('min')">No puede ser negativo</mat-error>
-    <mat-error *ngIf="formulario.get('n3')?.hasError('max')">No puede ser mayor que 10</mat-error>
-  </mat-form-field>
-
-  <button mat-raised-button color="primary" (click)="enviarNotas()">Enviar</button>
+  </table>
 
 </form>
 
