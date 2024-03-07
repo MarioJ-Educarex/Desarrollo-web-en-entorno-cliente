@@ -1,0 +1,127 @@
+<style>
+  .text-center {
+    text-align: center !important;
+  }
+</style>
+
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-auto">
+      <table class="table table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th class="text-center" scope="col">ID</th>
+            <th class="text-center" scope="col">NOMBRE</th>
+            <th class="text-center" scope="col">PRECIO</th>
+            <th class="text-center" scope="col">UNIDADES</th>
+            <th class="text-center" scope="col">IMAGEN</th>
+            <th class="text-center" scope="col">ACCIONES</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let f of frutas">
+            <th scope="row">{{ f.id }}</th>
+            <td>{{ f.nombre }}</td>
+            <td>{{ f.precio }}</td>
+            <td>{{ f.unidades }}</td>
+            <td><img width="80px" src="{{ f.imagen }}" alt="" /></td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-success m-1"
+                (click)="seleccionar(f)"
+              >
+                Seleccionar
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="eliminar(f.id)"
+              >
+                Eliminar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-auto">
+      <!-- <form #f="ngForm">
+        <label>Nombre</label>
+        <input type="text" name="name" [(ngModel)]="selectedProduct.name" />
+        <br />
+        <input type="button" (click)="crear(f)" value="Crear Productos" />
+      </form> -->
+
+      <form #f="ngForm">
+        <div class="form-group">
+          <label for="id">ID</label>
+          <input
+            type="text"
+            class="form-control"
+            id="id"
+            name="id"
+            placeholder="Enter id"
+            [(ngModel)]="selectedProduct.id"
+          />
+        </div>
+        <div class="form-group">
+          <label for="nombre">NOMBRE</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nombre"
+            name="nombre"
+            placeholder="Enter nombre"
+            [(ngModel)]="selectedProduct.nombre"
+          />
+        </div>
+        <div class="form-group">
+          <label for="precio">PRECIO</label>
+          <input
+            type="number"
+            class="form-control"
+            id="precio"
+            name="precio"
+            placeholder="Enter precio"
+            [(ngModel)]="selectedProduct.precio"
+          />
+        </div>
+        <div class="form-group">
+          <label for="unidades">UNIDADES</label>
+          <input
+            type="number"
+            class="form-control"
+            id="unidades"
+            name="unidades"
+            placeholder="Enter unidades"
+            [(ngModel)]="selectedProduct.unidades"
+          />
+        </div>
+        <div class="form-group">
+          <label for="imagen">IMAGEN</label>
+          <input
+            type="text"
+            class="form-control"
+            id="imagen"
+            name="imagen"
+            placeholder="Enter imagen"
+            [(ngModel)]="selectedProduct.imagen"
+          />
+        </div>
+      </form>
+      <input
+        type="button"
+        class="btn btn-info m-2"
+        (click)="crear(f)"
+        value="Crear Productos"
+      />
+      <input
+        type="button"
+        class="btn btn-primary m-2"
+        (click)="actualizarProducto(f)"
+        value="Actualizar Productos"
+      />
+    </div>
+  </div>
+</div>
